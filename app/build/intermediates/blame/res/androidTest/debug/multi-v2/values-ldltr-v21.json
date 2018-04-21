@@ -1,6 +1,21 @@
 {
     "logs": [
         {
+            "outputFile": "/Users/Serena/cs290/fpx/food-point-exchange/app/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-ldltr-v21/values-ldltr-v21.xml",
+            "map": [
+                {
+                    "source": "/Users/Serena/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/417e85c3f5f5a4f902898f43421e3fb8/res/values-ldltr-v21/values-ldltr-v21.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "112",
+                        "endOffsets": "163"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "/Users/Serena/cs290/QuizMaster/fpx/app/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-ldltr-v21/values-ldltr-v21.xml",
             "map": [
                 {

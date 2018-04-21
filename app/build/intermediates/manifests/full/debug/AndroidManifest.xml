@@ -23,6 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="edu.duke.compsci290.fpx.ProfileActivity" />
 
         <meta-data
             android:name="android.support.VERSION"
