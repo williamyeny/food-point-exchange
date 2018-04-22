@@ -100,7 +100,7 @@ public final class R {
     }
     public static final class integer {
         public static final int cancel_button_image_alpha = 0x7f080002;
-        public static final int status_bar_notification_info_maxnum = 0x7f080004;
+        public static final int status_bar_notification_info_maxnum = 0x7f080005;
     }
     public static final class layout {
         public static final int notification_action = 0x7f09001d;
@@ -120,7 +120,7 @@ public final class R {
         public static final int notification_template_part_time = 0x7f09002b;
     }
     public static final class string {
-        public static final int status_bar_notification_info_overflow = 0x7f0b0022;
+        public static final int status_bar_notification_info_overflow = 0x7f0b002b;
     }
     public static final class style {
         public static final int TextAppearance_Compat_Notification = 0x7f0c00fa;

@@ -3024,7 +3024,8 @@ public final class R {
     public static final int abc_config_activityShortDur=0x7f080001;
     public static final int cancel_button_image_alpha=0x7f080002;
     public static final int config_tooltipAnimTime=0x7f080003;
-    public static final int status_bar_notification_info_maxnum=0x7f080004;
+    public static final int google_play_services_version=0x7f080004;
+    public static final int status_bar_notification_info_maxnum=0x7f080005;
   }
   public static final class layout {
     public static final int abc_action_bar_title_item=0x7f090000;
@@ -3115,9 +3116,18 @@ public final class R {
     public static final int abc_shareactionprovider_share_with_application=0x7f0b001d;
     public static final int abc_toolbar_collapse_description=0x7f0b001e;
     public static final int app_name=0x7f0b001f;
-    public static final int full_name=0x7f0b0020;
-    public static final int search_menu_title=0x7f0b0021;
-    public static final int status_bar_notification_info_overflow=0x7f0b0022;
+    public static final int common_google_play_services_unknown_issue=0x7f0b0020;
+    public static final int default_web_client_id=0x7f0b0021;
+    public static final int firebase_database_url=0x7f0b0022;
+    public static final int full_name=0x7f0b0023;
+    public static final int gcm_defaultSenderId=0x7f0b0024;
+    public static final int google_api_key=0x7f0b0025;
+    public static final int google_app_id=0x7f0b0026;
+    public static final int google_crash_reporting_api_key=0x7f0b0027;
+    public static final int google_storage_bucket=0x7f0b0028;
+    public static final int project_id=0x7f0b0029;
+    public static final int search_menu_title=0x7f0b002a;
+    public static final int status_bar_notification_info_overflow=0x7f0b002b;
   }
   public static final class style {
     public static final int AlertDialog_AppCompat=0x7f0c0000;

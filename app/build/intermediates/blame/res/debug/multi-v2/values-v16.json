@@ -38,7 +38,17 @@
             "outputFile": "/Users/jerry/Duke/CS290/food-point-exchange/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "/Users/jerry/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/b59d2f50bcd4599ce1964b87f1f67ccd/res/values-v16/values-v16.xml",
+                    "source": "/Users/jerry/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/844186176af7c4ae8d19cbe4c582e712/res/values-v16/values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+                },
+                {
+                    "source": "/Users/jerry/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/d6674d1d94d8d92d362c1d192f11f03e/res/values-v16/values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -54,16 +64,6 @@
                         "endLines": "6",
                         "endColumns": "12",
                         "endOffsets": "289"
-                    }
-                },
-                {
-                    "source": "/Users/jerry/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/81afe2f86ecfe56d2e81d537ec56187b/res/values-v16/values-v16.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "65",
-                        "endOffsets": "116"
                     }
                 }
             ]

@@ -19,7 +19,7 @@
             "outputFile": "/Users/jerry/Duke/CS290/food-point-exchange/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw600dp-v13/values-sw600dp-v13.xml",
             "map": [
                 {
-                    "source": "/Users/jerry/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/b59d2f50bcd4599ce1964b87f1f67ccd/res/values-sw600dp-v13/values-sw600dp-v13.xml",
+                    "source": "/Users/jerry/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/d6674d1d94d8d92d362c1d192f11f03e/res/values-sw600dp-v13/values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
