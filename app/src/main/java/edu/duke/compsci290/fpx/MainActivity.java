@@ -11,8 +11,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FirebaseUtilities.createUser("zl150", "2021", "CS/STATS", "Jerry Liu", "8586632671", "poop");
-        FirebaseUtilities.createGiveRequest("zl150", 36.000941, -78.939265, System.currentTimeMillis());
+        FirebaseUtilities.updateOrCreateUser("zl150", false,"2021", "CS/STATS", "Jerry Liu", "8586632671", "poop");
+        FirebaseUtilities.updateOrCreateUser("wy35", true,"2020", "CS", "Will Ye", "6316496635", "poop");
+        FirebaseUtilities.createGiveRequest("wy35", 36.000941, -78.939265);
+        FirebaseUtilities.recordTransaction("zl150", "wy35", 9.5);
     }
 
 

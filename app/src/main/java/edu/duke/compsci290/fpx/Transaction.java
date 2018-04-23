@@ -8,7 +8,7 @@ public class Transaction {
     private String mSenderID;
     private String mReceiverID;
     private int mAmount;
-    private String mDate; //in form of mm/dd/yy
+    private String mDate; //in form of mm-dd-yy
 
     Transaction(String senderID, String receiverID, int amount, String date) {
         create(senderID, receiverID, amount, date);
@@ -33,7 +33,7 @@ public class Transaction {
     public String getSenderID() {
         return mSenderID;
     }
-    
+
     public String getReceiverID() {
         return mReceiverID;
     }
