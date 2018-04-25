@@ -61,54 +61,15 @@ public class FirebaseUtilities {
         mDatabase.child("give_requests").child(monthdayyear).child(netID).child("currentTimeMilli").setValue(date.getTime());
     }
 
-
-
-    public static List<Transaction> getUserTransactions(){
-        DatabaseReference mDatabase;
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        mRef = mDatabase.getKey()
-        boolean f;
-        ValueEventListener postListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String value;
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
-                Log.w("firebase", "loadPost:onCancelled", databaseError.toException());
-                // ...
-            }
-        };
-        mDatabase.addListenerForSingleValueEvent(postListener);
-        Log.d("%%%%%%%%%%%", )
-        return new ArrayList<>();
-    }
-
     /*
         Records transaction between two people under their profiles. Records it twice, once under each netID, identitfied by day of transaction
         Only call when the person giving accepts the request.
      */
     @TargetApi(26)
-    public static void recordTransaction(String receivernetID, String givernetID, double estimatedTransactionValue){
+    public static void recordTransaction(Transaction transaction){
         DatabaseReference mDatabase;
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
-        Date date = new Date();
-        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        int year  = localDate.getYear();
-        int month = localDate.getMonthValue();
-        int day   = localDate.getDayOfMonth();
-        String monthdayyear = month + "-" + day + "-" + year;
-
-        mDatabase.child("transactions").child(receivernetID).child(monthdayyear).child("receivernetID").setValue(receivernetID);
-        mDatabase.child("transactions").child(receivernetID).child(monthdayyear).child("givernetID").setValue(givernetID);
-        mDatabase.child("transactions").child(receivernetID).child(monthdayyear).child("estimatedTransactionValue").setValue(estimatedTransactionValue);
-
-        mDatabase.child("transactions").child(givernetID).child(monthdayyear).child("receivernetID").setValue(givernetID);
-        mDatabase.child("transactions").child(givernetID).child(monthdayyear).child("givernetID").setValue(givernetID);
-        mDatabase.child("transactions").child(givernetID).child(monthdayyear).child("estimatedTransactionValue").setValue(estimatedTransactionValue);
+        mDatabase.child("transactions").child(transaction.getmReceiverID()).push().setValue(transaction);
     }
 
 }
