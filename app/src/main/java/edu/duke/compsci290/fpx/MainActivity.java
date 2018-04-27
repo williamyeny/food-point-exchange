@@ -39,17 +39,14 @@ public class MainActivity extends AppCompatActivity {
         Transaction t1 = new Transaction("sl362", "pmk13", 32);
         Transaction t2 = new Transaction("sl362", "pmk13", 36);
         final Transaction[] transactions= new Transaction[]{t1,t2};
-
+        testButton.setText(p.getName());
         testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                Intent intent =  new Intent(MainActivity.this, ProfileActivity.class);
                 intent.putExtra("name_key", p.getName() );
                 intent.putExtra("netid_key", p.getID());
-
                 intent.putExtra("tx_key", transactions);
-
-
 
                 startActivity(intent);
             }

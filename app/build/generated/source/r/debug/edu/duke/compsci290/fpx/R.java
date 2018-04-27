@@ -3017,17 +3017,16 @@ public final class R {
     public static final int transaction_date_text_view=0x7f07008c;
     public static final int transaction_receiver_text_view=0x7f07008d;
     public static final int transaction_sender_text_view=0x7f07008e;
-    public static final int tx_header=0x7f07008f;
-    public static final int tx_header_amt=0x7f070090;
-    public static final int tx_header_date=0x7f070091;
-    public static final int tx_header_receiver=0x7f070092;
-    public static final int tx_header_sender=0x7f070093;
-    public static final int uniform=0x7f070094;
-    public static final int up=0x7f070095;
-    public static final int useLogo=0x7f070096;
-    public static final int withText=0x7f070097;
-    public static final int wrap=0x7f070098;
-    public static final int wrap_content=0x7f070099;
+    public static final int tx_header_amt=0x7f07008f;
+    public static final int tx_header_date=0x7f070090;
+    public static final int tx_header_receiver=0x7f070091;
+    public static final int tx_header_sender=0x7f070092;
+    public static final int uniform=0x7f070093;
+    public static final int up=0x7f070094;
+    public static final int useLogo=0x7f070095;
+    public static final int withText=0x7f070096;
+    public static final int wrap=0x7f070097;
+    public static final int wrap_content=0x7f070098;
   }
   public static final class integer {
     public static final int abc_config_activityDefaultDur=0x7f080000;

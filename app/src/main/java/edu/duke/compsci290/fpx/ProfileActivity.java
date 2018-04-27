@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -16,7 +15,8 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
+        /* NOTE: need to add picture, major, phone number, is giving
+         */
         Intent receivedIntent = this.getIntent();
 
         String name = receivedIntent.getStringExtra("name_key"); //get from database
@@ -24,11 +24,10 @@ public class ProfileActivity extends AppCompatActivity {
 
         TextView nameTV = (TextView)findViewById(R.id.name);
         TextView netidTV = (TextView)findViewById(R.id.netID);
-        TextView txHeaderTV = (TextView)findViewById(R.id.tx_header);
+
 
         nameTV.setText(name);
         netidTV.setText(netID);
-        txHeaderTV.setText("Transactions List");
 
 
         Transaction[] transactions = (Transaction[]) receivedIntent.getSerializableExtra("tx_key");//NOTE: load transactions from database here
