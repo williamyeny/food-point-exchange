@@ -1,6 +1,7 @@
 package edu.duke.compsci290.fpx;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.renderscript.Sampler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         };
         dbref.addValueEventListener(postListener);
 
+        startActivity(new Intent(this, MapsActivity.class));
     }
-
 
 }
