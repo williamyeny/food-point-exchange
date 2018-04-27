@@ -32,8 +32,9 @@ public class MainActivity extends AppCompatActivity {
         ChildEventListener userListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
-                Log.d("firebase", "onChildAdded:" + dataSnapshot.getKey());
                 Transaction transaction = dataSnapshot.getValue(Transaction.class);
+                Log.d("firebase", "onChildAdded:" + transaction.getmSenderID() + transaction.getmAmount() + transaction.getmDate() + transaction.getmReceiverID());
+
                 helloTextView.setText(transaction.getmSenderID() + transaction.getmAmount() + transaction.getmDate() + transaction.getmReceiverID());
             }
 
@@ -59,6 +60,21 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         mUserReference.addChildEventListener(userListener);
+        DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("users").child("zl150");
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("FIREBASE%%%%%%%%%%%", dataSnapshot.toString());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w("firebase fucked", "loadPost:onCancelled", databaseError.toException());
+                // ...
+            }
+        };
+        dbref.addValueEventListener(postListener);
 
     }
 

@@ -67,9 +67,10 @@ public class FirebaseUtilities {
      */
     @TargetApi(26)
     public static void recordTransaction(Transaction transaction){
-        DatabaseReference mDatabase;
+            DatabaseReference mDatabase;
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("transactions").child(transaction.getmReceiverID()).push().setValue(transaction);
+        mDatabase.child("transactions").child(transaction.getmSenderID()).push().setValue(transaction);
     }
 
 }
