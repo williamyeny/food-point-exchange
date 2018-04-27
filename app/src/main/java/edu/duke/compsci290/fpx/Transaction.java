@@ -2,6 +2,7 @@ package edu.duke.compsci290.fpx;
 
 import android.annotation.TargetApi;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -11,10 +12,9 @@ import java.util.Date;
  * Represents a completed transaction between two people
  */
 
-public class Transaction {
+public class Transaction implements Serializable{
 
     private String mSenderID;
-
     private String mReceiverID;
     private int mAmount;
     private String mDate; //in form of mm-dd-yy
