@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/profile_activity_linear_layout"
         android:layout_width="0dp"
-        android:layout_height="390dp"
+        android:layout_height="408dp"
         android:background="@color/startblue"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,8 +19,9 @@
 
         <ImageButton
             android:id="@+id/map_button"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="34dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="5dp"
             android:src="@drawable/map"
             android:text="Button" />
 
@@ -40,8 +41,8 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="name"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#fff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -57,8 +58,8 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="netid"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#fff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -73,8 +74,8 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="major"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#fff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -89,8 +90,8 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="year"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#fff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -105,8 +106,8 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="number"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#fff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -118,15 +119,15 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Giver"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#fff" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/activity_profile_recycler_view"
         android:layout_width="368dp"
-        android:layout_height="183dp"
+        android:layout_height="141dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
