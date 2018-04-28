@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FirebaseUtilities.updateOrCreateUser("zl150", false,"2021", "CS/STATS", "Jerry Liu", "8586632671", "poop");
-        FirebaseUtilities.updateOrCreateUser("wy35", true,"2020", "CS", "Will Ye", "6316496635", "poop");
+        FirebaseUtilities.updateOrCreateUser(new User("zl150", false,"2021", "CS/STATS", "Jerry Liu", "8586632671", "poop"));
+        FirebaseUtilities.updateOrCreateUser(new User("wy35", true,"2020", "CS", "Will Ye", "6316496635", "poop"));
         FirebaseUtilities.createGiveRequest("wy35", 36.000941, -78.939265);
         FirebaseUtilities.recordTransaction(new Transaction("wy35", "zl150", 10));
         final TextView helloTextView = (TextView) findViewById(R.id.testtext);
@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 //necessary method to inherit but we have no use for it
             }
             @Override
+
             public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
                 //necessary method to inherit but we have no use for it
             }
@@ -89,7 +90,9 @@ public class MainActivity extends AppCompatActivity {
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d("FIREBASE%%%%%%%%%%%", dataSnapshot.toString());
+                Log.d("FIREBASE%%%%%%%%%%%", (String)dataSnapshot.child("mName").getValue(true));
+                User user = dataSnapshot.getValue(User.class);
+                Log.d("FIREBASE%%%%%%%%%%%", user.getmNetID() + user.getmName() + user.getmIsGiving());
             }
 
             @Override
@@ -99,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 // ...
             }
         };
-        dbref.addValueEventListener(postListener);
+        dbref.addListenerForSingleValueEvent(postListener);
 
     }
 

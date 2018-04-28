@@ -9,6 +9,7 @@ MERGED from [com.android.support:appcompat-v7:26.1.0] /Users/jerry/.gradle/cache
 MERGED from [com.android.support.constraint:constraint-layout:1.1.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.0.aar/7cf5a48daf505740ba1da151bc08bd3f/AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.firebase:firebase-database:11.0.4] /Users/jerry/.gradle/caches/transforms-1/files-1.1/firebase-database-11.0.4.aar/4acb841b17d5c563228a51f3e81b07f9/AndroidManifest.xml:2:1-4:12
 MERGED from [com.android.support:recyclerview-v7:26.1.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/2b73bad1a4c4a4bda4e481f4e0c55c23/AndroidManifest.xml:17:1-28:12
+MERGED from [android.arch.persistence.room:runtime:1.0.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/5f8428bc82a1715c4fd6c51329f0f253/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:firebase-analytics:11.0.4] /Users/jerry/.gradle/caches/transforms-1/files-1.1/firebase-analytics-11.0.4.aar/19db626b0f1d2ba5da2d5d102cb40f3d/AndroidManifest.xml:16:1-35:12
 MERGED from [com.android.support:animated-vector-drawable:26.1.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/72cb8b6215a5b82368571e0be6e6a19c/AndroidManifest.xml:17:1-28:12
 MERGED from [com.android.support:support-vector-drawable:26.1.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/f0f8830c5babefd1333da0f068ee5c72/AndroidManifest.xml:17:1-28:12
@@ -24,6 +25,9 @@ MERGED from [com.android.support:support-core-ui:26.1.0] /Users/jerry/.gradle/ca
 MERGED from [com.android.support:support-media-compat:26.1.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/46eb567bce44b6218ced21ec9b3c46e1/AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-core-utils:26.1.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/2d3b46bb835dc49ea43065885ea2cdcd/AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-compat:26.1.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/844186176af7c4ae8d19cbe4c582e712/AndroidManifest.xml:17:1-31:12
+MERGED from [android.arch.persistence:db-framework:1.0.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/db-framework-1.0.0.aar/7565eb5112a695dd236ce10d488ea1c6/AndroidManifest.xml:17:1-24:12
+MERGED from [android.arch.persistence:db:1.0.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/db-1.0.0.aar/65570736922e7398ffe096ea25401d3b/AndroidManifest.xml:17:1-24:12
+MERGED from [android.arch.core:runtime:1.0.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/7a0f3283468821cd9484143e17b8af6a/AndroidManifest.xml:17:1-24:12
 MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/d82e008286b80c25604e937a62598474/AndroidManifest.xml:17:1-30:12
 INJECTED from /Users/jerry/Duke/CS290/food-point-exchange/app/src/main/AndroidManifest.xml:2:1-24:12
 INJECTED from /Users/jerry/Duke/CS290/food-point-exchange/app/src/main/AndroidManifest.xml:2:1-24:12
@@ -130,6 +134,8 @@ MERGED from [com.google.firebase:firebase-database:11.0.4] /Users/jerry/.gradle/
 MERGED from [com.google.firebase:firebase-database:11.0.4] /Users/jerry/.gradle/caches/transforms-1/files-1.1/firebase-database-11.0.4.aar/4acb841b17d5c563228a51f3e81b07f9/AndroidManifest.xml:3:5-43
 MERGED from [com.android.support:recyclerview-v7:26.1.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/2b73bad1a4c4a4bda4e481f4e0c55c23/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:recyclerview-v7:26.1.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-26.1.0.aar/2b73bad1a4c4a4bda4e481f4e0c55c23/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.persistence.room:runtime:1.0.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/5f8428bc82a1715c4fd6c51329f0f253/AndroidManifest.xml:20:5-22:41
+MERGED from [android.arch.persistence.room:runtime:1.0.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/5f8428bc82a1715c4fd6c51329f0f253/AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:firebase-analytics:11.0.4] /Users/jerry/.gradle/caches/transforms-1/files-1.1/firebase-analytics-11.0.4.aar/19db626b0f1d2ba5da2d5d102cb40f3d/AndroidManifest.xml:17:5-43
 MERGED from [com.google.firebase:firebase-analytics:11.0.4] /Users/jerry/.gradle/caches/transforms-1/files-1.1/firebase-analytics-11.0.4.aar/19db626b0f1d2ba5da2d5d102cb40f3d/AndroidManifest.xml:17:5-43
 MERGED from [com.android.support:animated-vector-drawable:26.1.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/72cb8b6215a5b82368571e0be6e6a19c/AndroidManifest.xml:20:5-44
@@ -160,6 +166,12 @@ MERGED from [com.android.support:support-core-utils:26.1.0] /Users/jerry/.gradle
 MERGED from [com.android.support:support-core-utils:26.1.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/2d3b46bb835dc49ea43065885ea2cdcd/AndroidManifest.xml:21:5-23:61
 MERGED from [com.android.support:support-compat:26.1.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/844186176af7c4ae8d19cbe4c582e712/AndroidManifest.xml:21:5-23:58
 MERGED from [com.android.support:support-compat:26.1.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/844186176af7c4ae8d19cbe4c582e712/AndroidManifest.xml:21:5-23:58
+MERGED from [android.arch.persistence:db-framework:1.0.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/db-framework-1.0.0.aar/7565eb5112a695dd236ce10d488ea1c6/AndroidManifest.xml:20:5-22:41
+MERGED from [android.arch.persistence:db-framework:1.0.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/db-framework-1.0.0.aar/7565eb5112a695dd236ce10d488ea1c6/AndroidManifest.xml:20:5-22:41
+MERGED from [android.arch.persistence:db:1.0.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/db-1.0.0.aar/65570736922e7398ffe096ea25401d3b/AndroidManifest.xml:20:5-22:41
+MERGED from [android.arch.persistence:db:1.0.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/db-1.0.0.aar/65570736922e7398ffe096ea25401d3b/AndroidManifest.xml:20:5-22:41
+MERGED from [android.arch.core:runtime:1.0.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/7a0f3283468821cd9484143e17b8af6a/AndroidManifest.xml:20:5-22:41
+MERGED from [android.arch.core:runtime:1.0.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/7a0f3283468821cd9484143e17b8af6a/AndroidManifest.xml:20:5-22:41
 MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/d82e008286b80c25604e937a62598474/AndroidManifest.xml:20:5-22:41
 MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/jerry/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/d82e008286b80c25604e937a62598474/AndroidManifest.xml:20:5-22:41
 INJECTED from /Users/jerry/Duke/CS290/food-point-exchange/app/src/main/AndroidManifest.xml
