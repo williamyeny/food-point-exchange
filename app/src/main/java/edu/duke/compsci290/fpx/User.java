@@ -1,10 +1,14 @@
 package edu.duke.compsci290.fpx;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by jerry on 4/22/18.
  */
 
-public class User {
+public class User implements Serializable {
 
     String mNetID;
     boolean mIsGiving;
@@ -13,6 +17,9 @@ public class User {
     String mName;
     String mPhoneNumber;
     String mPhoto;
+    List<Transaction> mTXList; //list of all transactions that a person has had
+
+
 
     public User(String mNetID, boolean mIsGiving, String mYear, String mMajor, String mName, String mPhoneNumber, String mPhoto) {
         this.mNetID = mNetID;
@@ -83,4 +90,17 @@ public class User {
     public void setmPhoto(String mPhoto) {
         this.mPhoto = mPhoto;
     }
+
+    public void addTransaction(Transaction t) {
+        if(mTXList == null ) {
+            mTXList = new ArrayList<Transaction>();
+        }
+        mTXList.add(t);
+    }
+
+    public List<Transaction> getTransactionList() {
+        return mTXList;
+
+    }
+
 }

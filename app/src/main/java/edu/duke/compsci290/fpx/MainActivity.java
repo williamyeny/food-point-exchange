@@ -36,17 +36,21 @@ public class MainActivity extends AppCompatActivity {
 
         /*PROFILE TESTING STUFF*/
         final Profile p = new Profile("Serena Liu", "sl362");
+        //public User(String mNetID, boolean mIsGiving, String mYear, String mMajor, String mName, String mPhoneNumber, String mPhoto) {
+        final User u = new User("sl362", true, "2019", "ECE", "Serena Liu", "7046141335", "photo");
+
         Transaction t1 = new Transaction("sl362", "pmk13", 32);
         Transaction t2 = new Transaction("sl362", "pmk13", 36);
-        final Transaction[] transactions= new Transaction[]{t1,t2};
+
+        u.addTransaction(t1);
+        u.addTransaction(t2);
         testButton.setText(p.getName());
         testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                Intent intent =  new Intent(MainActivity.this, ProfileActivity.class);
-                intent.putExtra("name_key", p.getName() );
-                intent.putExtra("netid_key", p.getID());
-                intent.putExtra("tx_key", transactions);
+
+                intent.putExtra("user_key", u);
 
                 startActivity(intent);
             }
