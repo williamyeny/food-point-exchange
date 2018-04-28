@@ -41,6 +41,7 @@
             android:layout_marginTop="8dp"
             android:text="name"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textAlignment="center"
             android:textColor="#fff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -57,6 +58,7 @@
             android:layout_marginTop="8dp"
             android:text="netid"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textAlignment="center"
             android:textColor="#fff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -72,6 +74,7 @@
             android:layout_marginTop="8dp"
             android:text="major"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textAlignment="center"
             android:textColor="#fff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -87,6 +90,7 @@
             android:layout_marginTop="8dp"
             android:text="year"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textAlignment="center"
             android:textColor="#fff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -102,6 +106,7 @@
             android:layout_marginTop="8dp"
             android:text="number"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textAlignment="center"
             android:textColor="#fff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -114,6 +119,7 @@
             android:layout_gravity="center"
             android:text="Giver"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAlignment="center"
             android:textColor="#fff" />
     </LinearLayout>
 

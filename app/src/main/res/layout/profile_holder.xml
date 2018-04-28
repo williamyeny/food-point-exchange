@@ -12,6 +12,8 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:text="TextView"
+        android:layout_gravity="center"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 </LinearLayout>
 
