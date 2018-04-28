@@ -2,37 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/profile_holder_linear_layout"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="50dp"
     android:layout_margin="10dp"
     android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/transaction_receiver_text_view"
-        android:layout_width="90dp"
-        android:layout_height="match_parent"
-        android:text="tx_receiver"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-    <TextView
-        android:id="@+id/transaction_sender_text_view"
-        android:layout_width="90dp"
-        android:layout_height="match_parent"
-        android:text="tx_sender"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-    <TextView
-        android:id="@+id/transaction_amt_text_view"
-        android:layout_width="50dp"
-        android:layout_height="match_parent"
-        android:text="tx_amt"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-    <TextView
-        android:id="@+id/transaction_date_text_view"
+        android:id="@+id/transaction_textview"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:text="TextView"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
+        android:text="TextView" />
 </LinearLayout>

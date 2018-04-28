@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FirebaseUtilities.updateOrCreateUser(new User("zl150", false,"2021", "CS/STATS", "Jerry Liu", "8586632671", "poop"));
-        FirebaseUtilities.updateOrCreateUser(new User("wy35", true,"2020", "CS", "Will Ye", "6316496635", "poop"));
+        //FirebaseUtilities.updateOrCreateUser("zl150", false,"2021", "CS/STATS", "Jerry Liu", "8586632671", "poop");
+        //FirebaseUtilities.updateOrCreateUser("wy35", true,"2020", "CS", "Will Ye", "6316496635", "poop");
         FirebaseUtilities.createGiveRequest("wy35", 36.000941, -78.939265);
         FirebaseUtilities.recordTransaction(new Transaction("wy35", "zl150", 10));
         final TextView helloTextView = (TextView) findViewById(R.id.testtext);
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         /*PROFILE TESTING STUFF*/
-        final Profile p = new Profile("Serena Liu", "sl362");
+        final Profile p = new Profile("Serena Liu", "sl362", "ECE", 2019);
         Transaction t1 = new Transaction("sl362", "pmk13", 32);
         Transaction t2 = new Transaction("sl362", "pmk13", 36);
         final Transaction[] transactions= new Transaction[]{t1,t2};
@@ -47,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("name_key", p.getName() );
                 intent.putExtra("netid_key", p.getID());
                 intent.putExtra("tx_key", transactions);
+                intent.putExtra("major_key", p.getMajor());
+                intent.putExtra("year_key", p.getYear() );
+
 
                 startActivity(intent);
             }
@@ -73,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
                 //necessary method to inherit but we have no use for it
             }
             @Override
-
             public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
                 //necessary method to inherit but we have no use for it
             }
@@ -90,9 +92,7 @@ public class MainActivity extends AppCompatActivity {
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d("FIREBASE%%%%%%%%%%%", (String)dataSnapshot.child("mName").getValue(true));
-                User user = dataSnapshot.getValue(User.class);
-                Log.d("FIREBASE%%%%%%%%%%%", user.getmNetID() + user.getmName() + user.getmIsGiving());
+                Log.d("FIREBASE%%%%%%%%%%%", dataSnapshot.toString());
             }
 
             @Override
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 // ...
             }
         };
-        dbref.addListenerForSingleValueEvent(postListener);
+        dbref.addValueEventListener(postListener);
 
     }
 

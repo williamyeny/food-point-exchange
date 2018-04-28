@@ -12,10 +12,14 @@ public class Profile {
     private String mID;
     private List<Transaction> mTXList; //list of all transactions that a person has had
     private Boolean isSender; //sender or receiver? 1 if sender, 0 if receiver
+    private String mMajor;
+    private int mYear;
 
-    Profile(String name, String netID ) {
+    Profile(String name, String netID, String major, int year ) {
         mName = name;
         mID = netID;
+        mMajor = major;
+        mYear = year;
     }
 
     public void addTransaction(Transaction t) {
@@ -33,6 +37,8 @@ public class Profile {
     public String getID() {
         return mID;
     }
+    public int getYear() {return mYear;}
+    public String getMajor() {return mMajor;};
 
     public String getName() {
         return mName;
