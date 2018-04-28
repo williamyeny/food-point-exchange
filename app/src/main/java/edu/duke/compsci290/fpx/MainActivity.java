@@ -42,8 +42,6 @@ public class MainActivity extends AppCompatActivity {
         Transaction t1 = new Transaction("sl362", "pmk13", 32);
         Transaction t2 = new Transaction("sl362", "pmk13", 36);
 
-        u.addTransaction(t1);
-        u.addTransaction(t2);
         testButton.setText(p.getName());
         testButton.setOnClickListener(new View.OnClickListener() {
             @Override

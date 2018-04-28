@@ -17,7 +17,7 @@ public class User implements Serializable {
     String mName;
     String mPhoneNumber;
     String mPhoto;
-    List<Transaction> mTXList; //list of all transactions that a person has had
+
 
 
 
@@ -91,16 +91,6 @@ public class User implements Serializable {
         this.mPhoto = mPhoto;
     }
 
-    public void addTransaction(Transaction t) {
-        if(mTXList == null ) {
-            mTXList = new ArrayList<Transaction>();
-        }
-        mTXList.add(t);
-    }
 
-    public List<Transaction> getTransactionList() {
-        return mTXList;
-
-    }
 
 }

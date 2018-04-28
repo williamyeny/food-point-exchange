@@ -344,6 +344,10 @@
         "source": "/Users/Serena/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/90a306bc797a082eb79c2962110346b5/res/drawable-xxhdpi-v4/abc_cab_background_top_mtrl_alpha.9.png"
     },
     {
+        "merged": "/Users/Serena/cs290/fpx/food-point-exchange/app/build/intermediates/res/merged/debug/drawable_circle.png.flat",
+        "source": "/Users/Serena/cs290/fpx/food-point-exchange/app/src/main/res/drawable/circle.png"
+    },
+    {
         "merged": "/Users/jerry/Duke/CS290/food-point-exchange/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_popup_background_mtrl_mult.9.png.flat",
         "source": "/Users/jerry/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/d6674d1d94d8d92d362c1d192f11f03e/res/drawable-mdpi-v4/abc_popup_background_mtrl_mult.9.png"
     },
@@ -580,6 +584,10 @@
         "source": "/Users/jerry/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/d6674d1d94d8d92d362c1d192f11f03e/res/anim/abc_slide_in_bottom.xml"
     },
     {
+        "merged": "/Users/Serena/cs290/fpx/food-point-exchange/app/build/intermediates/res/merged/debug/drawable_map.png.flat",
+        "source": "/Users/Serena/cs290/fpx/food-point-exchange/app/src/main/res/drawable/map.png"
+    },
+    {
         "merged": "/Users/jerry/Duke/CS290/food-point-exchange/app/build/intermediates/res/merged/debug/layout_notification_template_big_media_narrow.xml.flat",
         "source": "/Users/jerry/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/46eb567bce44b6218ced21ec9b3c46e1/res/layout/notification_template_big_media_narrow.xml"
     },
@@ -686,6 +694,10 @@
     {
         "merged": "/Users/Serena/cs290/fpx/food-point-exchange/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_ic_star_black_48dp.png.flat",
         "source": "/Users/Serena/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/90a306bc797a082eb79c2962110346b5/res/drawable-xxxhdpi-v4/abc_ic_star_black_48dp.png"
+    },
+    {
+        "merged": "/Users/Serena/cs290/fpx/food-point-exchange/app/build/intermediates/res/merged/debug/drawable_puppy.png.flat",
+        "source": "/Users/Serena/cs290/fpx/food-point-exchange/app/src/main/res/drawable/puppy.png"
     },
     {
         "merged": "/Users/jerry/Duke/CS290/food-point-exchange/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_ic_star_half_black_16dp.png.flat",
