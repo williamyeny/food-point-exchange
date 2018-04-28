@@ -18,6 +18,18 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        /*
+           Still need to work on/implement
+           1. profile picture
+           2. database, getting transactions
+           3. change to mapactivity on button instead of main activity
+           4. isGiving button on press changes database stuff
+
+
+         */
+
+
+
        /* Take in Intent data*/
         Intent receivedIntent = this.getIntent();
         User user = (User) receivedIntent.getSerializableExtra("user_key");
@@ -27,10 +39,7 @@ public class ProfileActivity extends AppCompatActivity {
         String major = user.getmMajor();
         String year = user.getmYear();
         String number = user.getmPhoneNumber();
-
         boolean isGiving = user.getmIsGiving();
-
-
 
        /*Connect textViews/switches/buttons with variables*/
 
