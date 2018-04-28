@@ -7,6 +7,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.database.ChildEventListener;
@@ -29,6 +31,28 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUtilities.createGiveRequest("wy35", 36.000941, -78.939265);
         FirebaseUtilities.recordTransaction(new Transaction("wy35", "zl150", 10));
         final TextView helloTextView = (TextView) findViewById(R.id.testtext);
+        final Button testButton = (Button) findViewById(R.id.test_button);
+
+
+        /*PROFILE TESTING STUFF*/
+        final Profile p = new Profile("Serena Liu", "sl362");
+        Transaction t1 = new Transaction("sl362", "pmk13", 32);
+        Transaction t2 = new Transaction("sl362", "pmk13", 36);
+        final Transaction[] transactions= new Transaction[]{t1,t2};
+        testButton.setText(p.getName());
+        testButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Intent intent =  new Intent(MainActivity.this, ProfileActivity.class);
+                intent.putExtra("name_key", p.getName() );
+                intent.putExtra("netid_key", p.getID());
+                intent.putExtra("tx_key", transactions);
+
+                startActivity(intent);
+            }
+        });
+
+
         DatabaseReference mUserReference = FirebaseDatabase.getInstance().getReference().child("transactions").child("zl150");
         ChildEventListener userListener = new ChildEventListener() {
             @Override
