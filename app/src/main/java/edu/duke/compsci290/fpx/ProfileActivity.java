@@ -10,10 +10,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class ProfileActivity extends AppCompatActivity {
@@ -51,8 +53,54 @@ public class ProfileActivity extends AppCompatActivity {
         TextView yearTV = (TextView)findViewById(R.id.year_id);
         TextView numberTV = (TextView)findViewById(R.id.number_id);
         ImageView profPicIV = (ImageView)findViewById(R.id.profile_picture);
+
         Switch giverSwitch = (Switch)findViewById(R.id.is_giving_switch);
         ImageButton mapBtn = (ImageButton)findViewById(R.id.map_button);
+        ImageButton addTxBtn = (ImageButton) findViewById(R.id.add_transaction);
+
+        final EditText receiverET = (EditText) findViewById(R.id.receiver_input);
+        final EditText senderET = (EditText) findViewById(R.id.sender_input);
+        final EditText amtET = (EditText) findViewById(R.id.amt_input);
+
+        addTxBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                String receiver = receiverET.getText().toString();
+                String sender = senderET.getText().toString();
+                String amt = amtET.getText().toString();
+                int amount=0;
+
+                //Checks to see if fields are full, and amount is an integer
+                if (sender.matches("")) {
+                    Toast.makeText(ProfileActivity.this, "You did not enter a sender", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (receiver.matches("")) {
+                    Toast.makeText(ProfileActivity.this, "You did not enter a receiver", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (amt.matches("")) {
+                    Toast.makeText(ProfileActivity.this, "You did not enter an amount", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                try{
+                    amount = Integer.parseInt(amt);
+                }catch (NumberFormatException ex) {
+                    Toast.makeText(ProfileActivity.this, "You did not enter a number in amount", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Transaction tx = new Transaction(sender, receiver, amount); //log this to the database
+                System.out.println(tx.getmSenderID() + tx.getmReceiverID() + tx.getmAmount());
+
+            }
+        });
+
+
 
         mapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +109,8 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(intent); //should be map activity later NOTE: do I need to pass anything as an intent here? save state?
             }
         });
+
+
 
         /*Profile picture, decoding string*/
 
