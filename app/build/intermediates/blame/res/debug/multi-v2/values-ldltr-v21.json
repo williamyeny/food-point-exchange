@@ -16,6 +16,21 @@
             ]
         },
         {
+            "outputFile": "/Users/Philipk/Documents/cs_290/food-point-exchange/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ldltr-v21/values-ldltr-v21.xml",
+            "map": [
+                {
+                    "source": "/Users/Philipk/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/9e345ed7d35e03db75c7f6a3012debcf/res/values-ldltr-v21/values-ldltr-v21.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "112",
+                        "endOffsets": "163"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "/Users/jerry/Duke/CS290/food-point-exchange/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ldltr-v21/values-ldltr-v21.xml",
             "map": [
                 {
