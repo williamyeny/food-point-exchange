@@ -3,7 +3,9 @@ package edu.duke.compsci290.fpx;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
@@ -12,6 +14,8 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -27,6 +31,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private boolean isGiving = true;
     private Button broadcastButton;
+    private ImageButton locateButton;
     private LatLng location;
 
     @Override
@@ -43,6 +48,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         broadcastButton = findViewById(R.id.broadcastButton);
+        locateButton = findViewById(R.id.locateButton);
 
     }
 
@@ -62,33 +68,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setMinZoomPreference(14.0f);
         Log.d("status", "created");
 
-//        LatLng dukeDefault = new LatLng(36.000919, -78.939372);
-
-        // get current location
-        LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-        LatLng currLatLng;
-
-        // if GPS permission is granted...
-        if (ContextCompat.checkSelfPermission(this,
-                android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                || ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            Log.d("permission granted", "true");
-
-            // grab gpa location
-            Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            currLatLng = new LatLng(location.getLatitude(), location.getLongitude());
-
-        } else { // gps permission not available
-            currLatLng = new LatLng(36.000919, -78.939372); // set to duke's lat/lng if gps not available
-            // request location
-            ActivityCompat.requestPermissions(this,
-                    new String[] { Manifest.permission.ACCESS_FINE_LOCATION },
-                    12);
-        }
+        LatLng dukeLatLng = new LatLng(36.000919, -78.939372);
 
         // move camera
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currLatLng, 18.0f));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(dukeLatLng, 18.0f));
 
         mMap.addMarker(new MarkerOptions()
                 .position( new LatLng(36.000919, -78.939372))
@@ -97,25 +80,106 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
 
 
-        if (isGiving) {
-            mMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
-                @Override
-                public void onCameraIdle() {
-                    Log.d("position", mMap.getCameraPosition().toString());
-                }
-            });
-        }
+//        if (isGiving) {
+//            mMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
+//                @Override
+//                public void onCameraIdle() {
+//                    Log.d("position", mMap.getCameraPosition().toString());
+//                }
+//            });
+//        }
 
         broadcastButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                double lat = mMap.getCameraPosition().target.latitude;
+                double lng = mMap.getCameraPosition().target.longitude;
+
+                mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(lat, lng))
+                        .title("My Location")
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.setlocation)));
+
+                findViewById(R.id.setLocationMarker).setVisibility(View.GONE);
+                broadcastButton.setText("Stop broadcasting location");
 
             }
         });
+
+        locateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // get current location
+                LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+                if (ContextCompat.checkSelfPermission(MapsActivity.this,
+                        android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                        || ContextCompat.checkSelfPermission(MapsActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                        == PackageManager.PERMISSION_GRANTED) {
+                    Log.d("permission granted", "true");
+
+                    Criteria criteria = new Criteria();
+                    criteria.setAccuracy(Criteria.ACCURACY_FINE);
+
+                    lm.requestSingleUpdate(criteria, new LocationListener() {
+                        @Override
+                        public void onLocationChanged(Location location) {
+                            // grab gps location
+                            if (location != null) {
+                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                                        new LatLng(location.getLatitude(), location.getLongitude()),
+                                        18.0f));
+                            } else {
+                                Toast.makeText(MapsActivity.this, "We couldn't get your location!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        @Override
+                        public void onStatusChanged(String s, int i, Bundle bundle) {}
+
+                        @Override
+                        public void onProviderEnabled(String s) {}
+
+                        @Override
+                        public void onProviderDisabled(String s) {}
+                    }, null);
+
+                } else { // gps permission not available
+                    // request location
+                    ActivityCompat.requestPermissions(MapsActivity.this,
+                            new String[] { Manifest.permission.ACCESS_FINE_LOCATION },
+                            12);
+                }
+            }
+        });
+
+
 
     }
 
     public void updateMarkers() {
 
     }
+
+    /*
+            // if GPS permission is granted...
+        if (ContextCompat.checkSelfPermission(this,
+                android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                || ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            Log.d("permission granted", "true");
+
+            // grab gps location
+            Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            currLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+
+            Log.d("currLatLng", currLatLng.toString());
+
+        } else { // gps permission not available
+            currLatLng = new LatLng(36.000919, -78.939372); // set to duke's lat/lng if gps not available
+            // request location
+            ActivityCompat.requestPermissions(this,
+                    new String[] { Manifest.permission.ACCESS_FINE_LOCATION },
+                    12);
+        }
+     */
 }
