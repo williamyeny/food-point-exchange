@@ -1,5 +1,6 @@
 package edu.duke.compsci290.fpx;
 
+import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.renderscript.Sampler;
@@ -18,17 +19,23 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
+    @TargetApi(26)
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FirebaseUtilities.updateOrCreateUser(new User("zl150", false,"2021", "CS/STATS", "Jerry Liu", "8586632671", "poop"));
         FirebaseUtilities.updateOrCreateUser(new User("wy35", true,"2020", "CS", "Will Ye", "6316496635", "poop"));
         FirebaseUtilities.createGiveRequest("wy35", 36.000941, -78.939265);
+        FirebaseUtilities.createGiveRequest("zl150", 36.000941, -78.939265);
         FirebaseUtilities.recordTransaction(new Transaction("wy35", "zl150", 10));
         final TextView helloTextView = (TextView) findViewById(R.id.testtext);
         final Button testButton = (Button) findViewById(R.id.test_button);
@@ -52,39 +59,44 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /*
+        testing sqlite
+         */
+        //UserContract.UserDbHelper mDbHelper = new UserContract.UserDbHelper(getApplicationContext());
 
-        DatabaseReference mUserReference = FirebaseDatabase.getInstance().getReference().child("transactions").child("zl150");
-        ChildEventListener userListener = new ChildEventListener() {
+        Date date = new Date();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        int year  = localDate.getYear();
+        int month = localDate.getMonthValue();
+        int day   = localDate.getDayOfMonth();
+        String monthdayyear = month + "-" + day + "-" + year;
+        
+        DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("give_requests").child(monthdayyear);
+        ValueEventListener postListener = new ValueEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
-                Transaction transaction = dataSnapshot.getValue(Transaction.class);
-                Log.d("firebase", "onChildAdded:" + transaction.getmSenderID() + transaction.getmAmount() + transaction.getmDate() + transaction.getmReceiverID());
-
-                helloTextView.setText(transaction.getmSenderID() + transaction.getmAmount() + transaction.getmDate() + transaction.getmReceiverID());
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                //necessary method to inherit but we have no use for it
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
-                //necessary method to inherit but we have no use for it
-            }
-            @Override
-
-            public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
-                //necessary method to inherit but we have no use for it
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Iterable<DataSnapshot> snapshots = dataSnapshot.getChildren();
+                ArrayList<GiveRequest> requests = new ArrayList<>();
+                for(DataSnapshot d: snapshots) {
+                    long timsdfs = (long) d.child("currentTimeMilli").getValue(true);
+                    double longitude = (double) d.child("longitude").getValue(true);
+                    double lat = (double) d.child("latitude").getValue(true);
+                    GiveRequest req = new GiveRequest(timsdfs, longitude, lat);
+                    requests.add(req);
+                    Log.d("FIREBSE", "netid" + timsdfs + "long lat" + longitude + " " + lat);
+                }
+                Log.d("FIREBASE IS AWESOME", "# of requests: " + requests.size());
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Getting Transaction failed, log a message
-                Log.w("firebase is done fucked", "loadPost:onCancelled", databaseError.toException());
+                // Getting Post failed, log a message
+                Log.w("firebase fucked", "loadPost:onCancelled", databaseError.toException());
                 // ...
             }
         };
+        dbref.addListenerForSingleValueEvent(postListener);
+        /*
         mUserReference.addChildEventListener(userListener);
         DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("users").child("zl150");
         ValueEventListener postListener = new ValueEventListener() {
@@ -103,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         dbref.addListenerForSingleValueEvent(postListener);
-
+        */
     }
 
 
