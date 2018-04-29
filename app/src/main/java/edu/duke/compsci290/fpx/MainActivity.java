@@ -36,8 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         /*PROFILE TESTING STUFF*/
         final Profile p = new Profile("Serena Liu", "sl362");
-        //public User(String mNetID, boolean mIsGiving, String mYear, String mMajor, String mName, String mPhoneNumber, String mPhoto) {
-        final User u = new User("sl362", true, "2019", "ECE", "Serena Liu", "7046141335", "photo");
+        final User u = new User("sl362", true, "2019", "ECE", "Serena Liu", "7046141335", "myPhoto");
 
         Transaction t1 = new Transaction("sl362", "pmk13", 32);
         Transaction t2 = new Transaction("sl362", "pmk13", 36);
