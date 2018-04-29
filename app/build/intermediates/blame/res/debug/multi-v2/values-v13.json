@@ -1,40 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/Serena/cs290/fpx/food-point-exchange/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v13/values-v13.xml",
+            "outputFile": "C:\\Users\\will\\Documents\\food-point-exchange\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v13\\values-v13.xml",
             "map": [
                 {
-                    "source": "/Users/Serena/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/90a306bc797a082eb79c2962110346b5/res/values-v13/values-v13.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "58",
-                        "endOffsets": "109"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "/Users/jerry/Duke/CS290/food-point-exchange/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v13/values-v13.xml",
-            "map": [
-                {
-                    "source": "/Users/jerry/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/d6674d1d94d8d92d362c1d192f11f03e/res/values-v13/values-v13.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "58",
-                        "endOffsets": "109"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "/Users/Serena/cs290/QuizMaster/fpx/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v13/values-v13.xml",
-            "map": [
-                {
-                    "source": "/Users/Serena/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/417e85c3f5f5a4f902898f43421e3fb8/res/values-v13/values-v13.xml",
+                    "source": "C:\\Users\\will\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\31b24981f0484a9612a22471cbad2861\\res\\values-v13\\values-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
