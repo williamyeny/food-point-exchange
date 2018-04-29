@@ -49,13 +49,17 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
         Transaction tx = mTransactions[position];
         String senderID= tx.getmSenderID();
         String receiverID= tx.getmReceiverID();
-        int amtID= tx.getmAmount();
+        String amtID= Integer.toString(tx.getmAmount());
         String dateID = tx.getmDate();
+        StringBuilder sb = new StringBuilder();
+        sb.append(senderID);
+        sb.append(" gave ");
+        sb.append(amtID);
+        sb.append(" food points to ");
+        sb.append(receiverID);
+        sb.append(".");
 
-        holder.mReceiver.setText(receiverID);
-        holder.mSender.setText(senderID);
-        holder.mAmt.setText(Integer.toString(amtID));
-        holder.mDate.setText(dateID);
+        holder.mTransacts.setText(sb.toString());
     }
 
     @Override
@@ -65,18 +69,13 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
 
     class ViewHolder extends RecyclerView.ViewHolder {
         private LinearLayout mLinearLayout;
-        private TextView mSender;
-        private TextView mReceiver;
-        private TextView mAmt;
-        private TextView mDate;
+        private TextView mTransacts;
 
         public ViewHolder(View itemView) {
             super(itemView);
             this.mLinearLayout = itemView.findViewById(R.id.profile_holder_linear_layout);
-            this.mReceiver = itemView.findViewById(R.id.transaction_receiver_text_view);
-            this.mSender = itemView.findViewById(R.id.transaction_sender_text_view);
-            this.mAmt = itemView.findViewById(R.id.transaction_amt_text_view);
-            this.mDate = itemView.findViewById(R.id.transaction_date_text_view);
+            this.mTransacts = itemView.findViewById(R.id.transaction_textview);
+
         }
 
     }

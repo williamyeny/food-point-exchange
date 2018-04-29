@@ -78,4 +78,6 @@ public class Transaction implements Serializable{
     public void setmDate(String mDate) {
         this.mDate = mDate;
     }
+
+
 }

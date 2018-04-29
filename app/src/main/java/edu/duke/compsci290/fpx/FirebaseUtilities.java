@@ -30,15 +30,10 @@ public class FirebaseUtilities {
     to be update like whether the person is giving or receiving, this method will simply overwrite the data
     so it also functions as a update method.
      */
-    public static void updateOrCreateUser(String netID, boolean isGiving, String year, String major, String name, String phoneNumber, String photo){
+    public static void updateOrCreateUser(User user){
         DatabaseReference mDatabase;
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("users").child(netID).child("isGiving").setValue(isGiving);
-        mDatabase.child("users").child(netID).child("year").setValue(year);
-        mDatabase.child("users").child(netID).child("major").setValue(major);
-        mDatabase.child("users").child(netID).child("name").setValue(name);
-        mDatabase.child("users").child(netID).child("phoneNumber").setValue(phoneNumber);
-        mDatabase.child("users").child(netID).child("photo").setValue(photo);
+        mDatabase.child("users").child(user.getmNetID()).setValue(user);
 
     }
 
@@ -67,7 +62,7 @@ public class FirebaseUtilities {
      */
     @TargetApi(26)
     public static void recordTransaction(Transaction transaction){
-            DatabaseReference mDatabase;
+        DatabaseReference mDatabase;
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("transactions").child(transaction.getmReceiverID()).push().setValue(transaction);
         mDatabase.child("transactions").child(transaction.getmSenderID()).push().setValue(transaction);
