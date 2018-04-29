@@ -40,7 +40,7 @@
         android:src="@drawable/locate" />
 
     <ImageView
-        android:id="@+id/setLocationMarker"
+        android:id="@+id/setLocationImage"
         android:layout_width="300px"
         android:layout_height="600px"
         android:layout_centerHorizontal="true"

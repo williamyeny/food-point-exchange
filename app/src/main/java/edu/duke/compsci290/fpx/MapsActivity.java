@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -24,6 +25,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -33,6 +35,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Button broadcastButton;
     private ImageButton locateButton;
     private LatLng location;
+    private ImageView setLocationImage;
+    private Marker setLocationMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +47,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        if (!isGiving) {
-            findViewById(R.id.setLocationMarker).setVisibility(View.GONE);
-        }
-
         broadcastButton = findViewById(R.id.broadcastButton);
         locateButton = findViewById(R.id.locateButton);
+        setLocationImage = findViewById(R.id.setLocationImage);
 
+        if (!isGiving) {
+            setLocationImage.setVisibility(View.GONE);
+        }
     }
 
 
@@ -92,16 +96,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         broadcastButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                double lat = mMap.getCameraPosition().target.latitude;
-                double lng = mMap.getCameraPosition().target.longitude;
+                if (setLocationImage.getVisibility() == View.VISIBLE) {
+                    double lat = mMap.getCameraPosition().target.latitude;
+                    double lng = mMap.getCameraPosition().target.longitude;
 
-                mMap.addMarker(new MarkerOptions()
-                        .position(new LatLng(lat, lng))
-                        .title("My Location")
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.setlocation)));
+                    setLocationMarker = mMap.addMarker(new MarkerOptions()
+                            .position(new LatLng(lat, lng))
+                            .title("My Location")
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.setlocation_scaled)));
 
-                findViewById(R.id.setLocationMarker).setVisibility(View.GONE);
-                broadcastButton.setText("Stop broadcasting location");
+                    setLocationImage.setVisibility(View.GONE);
+                    broadcastButton.setText("Stop broadcasting location");
+
+                    // update user lat/lng here
+                } else {
+                    setLocationImage.setVisibility(View.VISIBLE);
+                    if (setLocationMarker != null) {
+                        setLocationMarker.remove();
+                    }
+                    broadcastButton.setText("Start broadcasting location");
+
+                    // remove user lat/lng here
+                }
 
             }
         });
