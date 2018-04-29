@@ -1,42 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/Serena/cs290/fpx/food-point-exchange/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v14/values-v14.xml",
-            "map": [
-                {
-                    "source": "/Users/Serena/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/90a306bc797a082eb79c2962110346b5/res/values-v14/values-v14.xml",
-                    "from": {
-                        "startLines": "2,7,8,9,15",
-                        "startColumns": "4,4,4,4,4",
-                        "startOffsets": "55,331,402,485,895",
-                        "endLines": "6,7,8,14,20",
-                        "endColumns": "12,70,82,12,12",
-                        "endOffsets": "326,397,480,890,1312"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "/Users/jerry/Duke/CS290/food-point-exchange/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v14/values-v14.xml",
             "map": [
                 {
                     "source": "/Users/jerry/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/d6674d1d94d8d92d362c1d192f11f03e/res/values-v14/values-v14.xml",
-                    "from": {
-                        "startLines": "2,7,8,9,15",
-                        "startColumns": "4,4,4,4,4",
-                        "startOffsets": "55,331,402,485,895",
-                        "endLines": "6,7,8,14,20",
-                        "endColumns": "12,70,82,12,12",
-                        "endOffsets": "326,397,480,890,1312"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "/Users/Philipk/Documents/cs_290/food-point-exchange/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v14/values-v14.xml",
-            "map": [
-                {
-                    "source": "/Users/Philipk/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/9e345ed7d35e03db75c7f6a3012debcf/res/values-v14/values-v14.xml",
                     "from": {
                         "startLines": "2,7,8,9,15",
                         "startColumns": "4,4,4,4,4",

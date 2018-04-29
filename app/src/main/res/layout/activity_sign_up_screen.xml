@@ -29,28 +29,34 @@
             android:textColorHint="#bbbbbb"
             />
         <EditText
-            android:id="@+id/NetId"
+            android:id="@+id/user_Year"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edittext_default_bg"
             android:layout_marginTop="-2dp"
             android:padding="10dp"
-            android:hint="NetID"
+            android:hint="Year"
             android:textColorHint="#bbbbbb"
             />
-
-
-
         <EditText
-            android:id="@+id/etPass"
+            android:id="@+id/user_Phonenumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edittext_bottom_bg"
             android:layout_marginTop="-2dp"
             android:padding="10dp"
-            android:hint="Password"
+            android:hint="Phone Number"
             android:textColorHint="#bbbbbb"
-            android:password="true"
+            />
+        <EditText
+            android:id="@+id/user_Major"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_bottom_bg"
+            android:layout_marginTop="-2dp"
+            android:padding="10dp"
+            android:hint="Major"
+            android:textColorHint="#bbbbbb"
             />
 
         <Button
@@ -67,14 +73,13 @@
 
         <Button
             android:id="@+id/etCamera"
+            style="@style/DefaultButtonText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
             android:layout_margin="4dp"
-            android:text="Choose From Camera"
-            style="@style/DefaultButtonText"
             android:background="@drawable/button_default_bg"
-            />
+            android:padding="10dp"
+            android:text="Take a picture" />
 
         <ImageView
             android:id="@+id/imageupload"
@@ -86,9 +91,18 @@
 
             />
 
+        <Switch
+            android:id="@+id/is_giving_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Giving"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#fff" />
 
         <Button
-            android:id="@+id/btnSingIn"
+            android:id="@+id/btnSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"

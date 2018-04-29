@@ -24,7 +24,7 @@ public class Starter_Activity  extends AppCompatActivity{
 
         btnSignUp = (Button) findViewById(R.id.btnSignUp);
 
-        btnSignIn = (Button) findViewById(R.id.btnSingIn);
+        btnSignIn = (Button) findViewById(R.id.btnSignIn);
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
 
