@@ -27,6 +27,16 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -37,6 +47,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LatLng location;
     private ImageView setLocationImage;
     private Marker setLocationMarker;
+    private ImageButton profileButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +61,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         broadcastButton = findViewById(R.id.broadcastButton);
         locateButton = findViewById(R.id.locateButton);
         setLocationImage = findViewById(R.id.setLocationImage);
+        profileButton = findViewById(R.id.profileButton);
 
         if (!isGiving) {
             setLocationImage.setVisibility(View.GONE);
@@ -77,21 +89,59 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // move camera
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(dukeLatLng, 18.0f));
 
-        mMap.addMarker(new MarkerOptions()
-                .position( new LatLng(36.000919, -78.939372))
-                .title("Duke University")
-                .snippet("test")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
 
+        /*
+        Date date = new Date();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        int year  = localDate.getYear();
+        int month = localDate.getMonthValue();
+        int day   = localDate.getDayOfMonth();
+        String monthdayyear = month + "-" + day + "-" + year;
 
-//        if (isGiving) {
-//            mMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
-//                @Override
-//                public void onCameraIdle() {
-//                    Log.d("position", mMap.getCameraPosition().toString());
-//                }
-//            });
-//        }
+        DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("give_requests").child(monthdayyear);
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Iterable<DataSnapshot> snapshots = dataSnapshot.getChildren();
+                ArrayList<GiveRequest> requests = new ArrayList<>();
+                for(DataSnapshot d: snapshots) {
+                    long timeMilli = (long) d.child("currentTimeMilli").getValue(true);
+                    double longitude = (double) d.child("longitude").getValue(true);
+                    double lat = (double) d.child("latitude").getValue(true);
+                    GiveRequest req = new GiveRequest(timeMilli, longitude, lat);
+                    //only add request to list if it happened in the last 15 minutes.
+                    if(System.currentTimeMillis() - timeMilli < 900000){
+                        requests.add(req);
+                    }
+                    Log.d("FIREBSE", "netid" + timeMilli + "long lat" + longitude + " " + lat);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w("firebase fucked", "loadPost:onCancelled", databaseError.toException());
+                // ...
+            }
+        };
+        dbref.addListenerForSingleValueEvent(postListener);
+
+        */
+
+        // add markers here
+//        mMap.addMarker(new MarkerOptions()
+//                .position( new LatLng(36.000919, -78.939372))
+//                .title("Duke University")
+//                .snippet("test")
+//                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
+
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // open profile activity here
+            }
+        });
 
         broadcastButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,6 +225,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void updateMarkers() {
 
     }
+
+
 
     /*
             // if GPS permission is granted...
