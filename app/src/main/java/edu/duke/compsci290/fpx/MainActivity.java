@@ -75,9 +75,9 @@ public class MainActivity extends AppCompatActivity {
         ContentValues values = new ContentValues();
         values.put(UserContract.UserEntry.COLUMN_ISGIVING, true);
         values.put(UserContract.UserEntry.COLUMN_MAJOR, "CS");
-        values.put(UserContract.UserEntry.COLUMN_NAME, "Jerry Liu");
+        values.put(UserContract.UserEntry.COLUMN_NAME, "Will Ye");
         values.put(UserContract.UserEntry.COLUMN_PHONENUMBER, "8586632671");
-        values.put(UserContract.UserEntry.COLUMN_NETID, "zl150");
+        values.put(UserContract.UserEntry.COLUMN_NETID, "wy35");
         values.put(UserContract.UserEntry.COLUMN_PHOTO, "poop");
         values.put(UserContract.UserEntry.COLUMN_YEAR, "2021");
 
@@ -104,9 +104,9 @@ public class MainActivity extends AppCompatActivity {
         int phoneNumber = c.getColumnIndex(UserContract.UserEntry.COLUMN_PHONENUMBER);
         int photo = c.getColumnIndex(UserContract.UserEntry.COLUMN_PHOTO);
         int iyear = c.getColumnIndex(UserContract.UserEntry.COLUMN_YEAR);
-        c.moveToFirst();
+        c.moveToLast();
         User user = new User(c.getString(netid), c.getInt(giving) != 0, c.getString(iyear), c.getString(major), c.getString(name), c.getString(phoneNumber), c.getString(photo));
-        Log.d("SQLITE POGGERS", user.toString());
+        Log.d("SQLITE POGGERS", user.getmNetID() + user.getmName());
 
 
 
