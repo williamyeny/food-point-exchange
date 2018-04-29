@@ -1,8 +1,10 @@
 package edu.duke.compsci290.fpx;
 
 import android.annotation.TargetApi;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.renderscript.Sampler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUtilities.updateOrCreateUser(new User("wy35", true,"2020", "CS", "Will Ye", "6316496635", "poop"));
         FirebaseUtilities.createGiveRequest("wy35", 36.000941, -78.939265);
         FirebaseUtilities.createGiveRequest("zl150", 36.000941, -78.939265);
+        FirebaseUtilities.createGiveRequest("sl362", 36.000941, -78.939265);
         FirebaseUtilities.recordTransaction(new Transaction("wy35", "zl150", 10));
         final TextView helloTextView = (TextView) findViewById(R.id.testtext);
         final Button testButton = (Button) findViewById(R.id.test_button);
@@ -62,7 +65,25 @@ public class MainActivity extends AppCompatActivity {
         /*
         testing sqlite
          */
-        //UserContract.UserDbHelper mDbHelper = new UserContract.UserDbHelper(getApplicationContext());
+        UserDbHelper mDbHelper = new UserDbHelper(getApplicationContext());
+        SQLiteDatabase dbwrite = mDbHelper.getWritableDatabase();
+
+        // Create a new map of values, where column names are the keys
+        ContentValues values = new ContentValues();
+        values.put(UserContract.UserEntry.COLUMN_ISGIVING, true);
+        values.put(UserContract.UserEntry.COLUMN_MAJOR, "CS");
+        values.put(UserContract.UserEntry.COLUMN_NAME, "Jerry Liu");
+        values.put(UserContract.UserEntry.COLUMN_PHONENUMBER, "8586632671");
+        values.put(UserContract.UserEntry.COLUMN_NETID, "zl150");
+        values.put(UserContract.UserEntry.COLUMN_PHOTO, "poop");
+        values.put(UserContract.UserEntry.COLUMN_YEAR, "2021");
+
+// Insert the new row, returning the primary key value of the new row
+        long newRowId = dbwrite.insert(UserContract.UserEntry.TABLE_NAME, null, values);
+        Log.d("SQLite", "rowid " + newRowId);
+        dbwrite.close();
+
+        SQLiteDatabase dbread = mDbHelper.getReadableDatabase();
 
         Date date = new Date();
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -70,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         int month = localDate.getMonthValue();
         int day   = localDate.getDayOfMonth();
         String monthdayyear = month + "-" + day + "-" + year;
-        
+
         DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("give_requests").child(monthdayyear);
         ValueEventListener postListener = new ValueEventListener() {
             @Override
@@ -78,14 +99,17 @@ public class MainActivity extends AppCompatActivity {
                 Iterable<DataSnapshot> snapshots = dataSnapshot.getChildren();
                 ArrayList<GiveRequest> requests = new ArrayList<>();
                 for(DataSnapshot d: snapshots) {
-                    long timsdfs = (long) d.child("currentTimeMilli").getValue(true);
+                    long timeMilli = (long) d.child("currentTimeMilli").getValue(true);
                     double longitude = (double) d.child("longitude").getValue(true);
                     double lat = (double) d.child("latitude").getValue(true);
-                    GiveRequest req = new GiveRequest(timsdfs, longitude, lat);
-                    requests.add(req);
-                    Log.d("FIREBSE", "netid" + timsdfs + "long lat" + longitude + " " + lat);
+                    GiveRequest req = new GiveRequest(timeMilli, longitude, lat);
+                    //only add request to list if it happened in the last 15 minutes.
+                    if(System.currentTimeMillis() - timeMilli < 900000){
+                        requests.add(req);
+                    }
+                    Log.d("FIREBSE", "netid" + timeMilli + "long lat" + longitude + " " + lat);
                 }
-                Log.d("FIREBASE IS AWESOME", "# of requests: " + requests.size());
+
             }
 
             @Override

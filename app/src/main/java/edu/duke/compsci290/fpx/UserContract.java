@@ -25,7 +25,8 @@ public final class UserContract {
 
     /* Inner class that defines the table contents */
     public static class UserEntry implements BaseColumns {
-        public static final String TABLE_NAME = "netID";
+        public static final String TABLE_NAME = "User";
+        public static final String COLUMN_NETID = "mNetID";
         public static final String COLUMN_NAME = "mName";
         public static final String COLUMN_YEAR = "mYear";
         public static final String COLUMN_MAJOR = "mMajor";
@@ -40,8 +41,9 @@ public final class UserContract {
                     UserEntry.COLUMN_NAME + " TEXT," +
                     UserEntry.COLUMN_YEAR + " TEXT,"+
                     UserEntry.COLUMN_MAJOR + " TEXT,"+
-                    UserEntry.COLUMN_YEAR + " TEXT,"+
+                    UserEntry.COLUMN_ISGIVING + " TEXT,"+
                     UserEntry.COLUMN_PHONENUMBER + " TEXT,"+
+                    UserEntry.COLUMN_NETID + " TEXT,"+
                     UserEntry.COLUMN_PHOTO + " TEXT)";
 
     public static final String SQL_DELETE_ENTRIES =
