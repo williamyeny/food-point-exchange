@@ -2,18 +2,21 @@ package edu.duke.compsci290.fpx;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private boolean isGiving = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +41,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
+        mMap.setMinZoomPreference(14.0f);
+        Log.d("status", "created");
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(36, -79);
+        LatLng dukeDefault = new LatLng(36.000919, -78.939372);
         mMap.addMarker(new MarkerOptions()
-                .position(sydney)
+                .position(dukeDefault)
                 .title("Duke University")
                 .snippet("test")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(dukeDefault, 18.0f));
+
+        if (isGiving) {
+            mMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
+                @Override
+                public void onCameraIdle() {
+                    Log.d("position", mMap.getCameraPosition().toString());
+                }
+            });
+        }
+
+    }
+
+    public void updateMarkers() {
+
     }
 }
