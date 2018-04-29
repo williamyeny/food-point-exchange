@@ -1,9 +1,17 @@
 package edu.duke.compsci290.fpx;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -18,6 +26,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private boolean isGiving = true;
+    private Button broadcastButton;
+    private LatLng location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +41,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (!isGiving) {
             findViewById(R.id.setLocationMarker).setVisibility(View.GONE);
         }
+
+        broadcastButton = findViewById(R.id.broadcastButton);
+
     }
 
 
@@ -48,14 +61,41 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
         mMap.setMinZoomPreference(14.0f);
         Log.d("status", "created");
-        // Add a marker in Sydney and move the camera
-        LatLng dukeDefault = new LatLng(36.000919, -78.939372);
+
+//        LatLng dukeDefault = new LatLng(36.000919, -78.939372);
+
+        // get current location
+        LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        LatLng currLatLng;
+
+        // if GPS permission is granted...
+        if (ContextCompat.checkSelfPermission(this,
+                android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                || ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            Log.d("permission granted", "true");
+
+            // grab gpa location
+            Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            currLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+
+        } else { // gps permission not available
+            currLatLng = new LatLng(36.000919, -78.939372); // set to duke's lat/lng if gps not available
+            // request location
+            ActivityCompat.requestPermissions(this,
+                    new String[] { Manifest.permission.ACCESS_FINE_LOCATION },
+                    12);
+        }
+
+        // move camera
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currLatLng, 18.0f));
+
         mMap.addMarker(new MarkerOptions()
-                .position(dukeDefault)
+                .position( new LatLng(36.000919, -78.939372))
                 .title("Duke University")
                 .snippet("test")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(dukeDefault, 18.0f));
+
 
         if (isGiving) {
             mMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
@@ -65,6 +105,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             });
         }
+
+        broadcastButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
     }
 
