@@ -114,9 +114,9 @@ public class SignUpActivity extends AppCompatActivity{
                 String profilePictureString64 = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
                 //all fields complete... add user to db and launch main activity...
-                //MUST UNCOMMENT
-                //prefs.edit().putBoolean("isUserLoggedIn", true))
-
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                prefs.edit().putBoolean("isUserLoggedIn", true).commit();
+                prefs.edit().putString("currentUserNetID", netID).commit();
                 UserDbHelper mDbHelper = new UserDbHelper(getApplicationContext());
                 SQLiteDatabase dbwrite = mDbHelper.getWritableDatabase();
 
@@ -137,8 +137,7 @@ public class SignUpActivity extends AppCompatActivity{
 
                 //write to firebase db
                 FirebaseUtilities.updateOrCreateUser(new User(netID, isGiving,year, major, name, phone, profilePictureString64));
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                prefs.edit().putString("currentUserNetID", netID).commit();
+
 
                 //Switch activity on over to main map activity
                 Intent intent = new Intent(getApplicationContext(), MapsActivity.class);

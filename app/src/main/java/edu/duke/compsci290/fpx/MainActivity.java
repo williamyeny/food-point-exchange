@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         //Check if user has already logged in, if so, go to map, if not, go to login/signup page
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext());
         if(!prefs.getBoolean("isUserLoggedIn", false)){
-            Intent intent = new Intent(this, MapsActivity.class);
+            Intent intent = new Intent(this, Starter_Activity.class);
             startActivity(intent);
         } else{
             //start map activity

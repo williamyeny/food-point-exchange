@@ -59,12 +59,12 @@ public class SignInActivity extends AppCompatActivity {
 
                 if (url.contains("error")){
 
-                    Intent mIntent = new Intent(SignInActivity.this, Starter_Activity.class);
+                    Intent mIntent = new Intent(getApplicationContext(), Starter_Activity.class);
                     startActivity(mIntent);
 
                 }else if(url.contains("#access_token=")){
 
-                    Intent mIntent = new Intent(SignInActivity.this, MapsActivity.class);
+                    Intent mIntent = new Intent(getApplicationContext(), NetIdActivity.class);
                     startActivity(mIntent);
 
 
