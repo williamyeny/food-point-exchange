@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -38,6 +40,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -107,9 +110,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View view) {
                 //NOTE: LOAD ALL STUFF FROM DATABASE
-                User u = new User("zl150", true, "2019", "ece", "serena",  "7046141335", "myPhoto" );
+                UserDbHelper mDbHelper = new UserDbHelper(getApplicationContext());
+                SQLiteDatabase dbRead = mDbHelper.getReadableDatabase();
+                String[] columns = new String[]{
+                        UserContract.UserEntry.COLUMN_NETID,
+                        UserContract.UserEntry.COLUMN_ISGIVING,
+                        UserContract.UserEntry.COLUMN_MAJOR,
+                        UserContract.UserEntry.COLUMN_NAME,
+                        UserContract.UserEntry.COLUMN_PHONENUMBER,
+                        UserContract.UserEntry.COLUMN_PHOTO,
+                        UserContract.UserEntry.COLUMN_YEAR};
+                Cursor c = dbRead.query(UserContract.UserEntry.TABLE_NAME, columns, null, null, null, null, null);
+                List<Object> list = new ArrayList<Object>() {};
+                int netid = c.getColumnIndex(UserContract.UserEntry.COLUMN_NETID);
+                int giving = c.getColumnIndex(UserContract.UserEntry.COLUMN_ISGIVING);
+                int major = c.getColumnIndex(UserContract.UserEntry.COLUMN_MAJOR);
+                int name = c.getColumnIndex(UserContract.UserEntry.COLUMN_NAME);
+                int phoneNumber = c.getColumnIndex(UserContract.UserEntry.COLUMN_PHONENUMBER);
+                int photo = c.getColumnIndex(UserContract.UserEntry.COLUMN_PHOTO);
+                int iyear = c.getColumnIndex(UserContract.UserEntry.COLUMN_YEAR);
+                c.moveToLast();
+                User user = new User(c.getString(netid), c.getInt(giving) != 0, c.getString(iyear), c.getString(major), c.getString(name), c.getString(phoneNumber), c.getString(photo));
+                Log.d("SQLITE retrieval", user.getmNetID() + user.getmName());
+
                 Intent intent = new Intent(MapsActivity.this, ProfileActivity.class);
-                intent.putExtra("user_key", u);
+                intent.putExtra("user_key", user);
                 startActivity(intent);
 
             }
