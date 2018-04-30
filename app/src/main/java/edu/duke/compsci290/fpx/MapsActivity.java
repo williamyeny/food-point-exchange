@@ -1,8 +1,10 @@
 package edu.duke.compsci290.fpx;
 
 import android.Manifest;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,10 +12,12 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -66,6 +70,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        //Retrieve data from sqlite
+        UserDbHelper mDbHelper = new UserDbHelper(getApplicationContext());
+        SQLiteDatabase dbRead = mDbHelper.getReadableDatabase();
+        String[] columns = new String[]{
+                UserContract.UserEntry.COLUMN_NETID,
+                UserContract.UserEntry.COLUMN_ISGIVING,
+                UserContract.UserEntry.COLUMN_MAJOR,
+                UserContract.UserEntry.COLUMN_NAME,
+                UserContract.UserEntry.COLUMN_PHONENUMBER,
+                UserContract.UserEntry.COLUMN_PHOTO,
+                UserContract.UserEntry.COLUMN_YEAR};
+        Cursor c = dbRead.query(UserContract.UserEntry.TABLE_NAME, columns, null, null, null, null, null);
+        List<Object> list = new ArrayList<Object>() {};
+        int netid = c.getColumnIndex(UserContract.UserEntry.COLUMN_NETID);
+        int giving = c.getColumnIndex(UserContract.UserEntry.COLUMN_ISGIVING);
+        int major = c.getColumnIndex(UserContract.UserEntry.COLUMN_MAJOR);
+        int name = c.getColumnIndex(UserContract.UserEntry.COLUMN_NAME);
+        int phoneNumber = c.getColumnIndex(UserContract.UserEntry.COLUMN_PHONENUMBER);
+        int photo = c.getColumnIndex(UserContract.UserEntry.COLUMN_PHOTO);
+        int iyear = c.getColumnIndex(UserContract.UserEntry.COLUMN_YEAR);
+        c.moveToLast();
+        User user = new User(c.getString(netid), c.getInt(giving) != 0, c.getString(iyear), c.getString(major), c.getString(name), c.getString(phoneNumber), c.getString(photo));
+        Log.d("SQLITE retrieval", user.getmNetID() + user.getmName());
+        isGiving = user.getmIsGiving();
+        netID = user.getmNetID();
 
         broadcastButton = findViewById(R.id.broadcastButton);
         locateButton = findViewById(R.id.locateButton);
@@ -122,6 +152,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public boolean onMarkerClick(Marker marker) {
                 String netIDMarker = marker.getTitle();
                 Log.d("marker", netIDMarker);
+
+                DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("users").child(netIDMarker);
+                ValueEventListener postListener = new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        User otherUser = dataSnapshot.getValue(User.class);
+                        //Switch activity on over to other profile activity
+                        Intent intent = new Intent(getApplicationContext(), OtherProfileActivity.class);
+                        intent.putExtra("user_key", otherUser);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        // Getting Post failed, log a message
+                        Log.w("firebase fucked", "loadPost:onCancelled", databaseError.toException());
+                        // ...
+                    }
+                };
+                dbref.addListenerForSingleValueEvent(postListener);
 
                 return false;
             }
