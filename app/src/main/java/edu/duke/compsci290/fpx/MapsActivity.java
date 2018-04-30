@@ -48,6 +48,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ImageView setLocationImage;
     private Marker setLocationMarker;
     private ImageButton profileButton;
+    private ArrayList<Marker> markers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +67,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (!isGiving) {
             setLocationImage.setVisibility(View.GONE);
         }
+        markers = new ArrayList<>();
     }
 
 
@@ -90,46 +92,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(dukeLatLng, 18.0f));
 
 
-        /*
-        Date date = new Date();
-        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        int year  = localDate.getYear();
-        int month = localDate.getMonthValue();
-        int day   = localDate.getDayOfMonth();
-        String monthdayyear = month + "-" + day + "-" + year;
 
-        DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("give_requests").child(monthdayyear);
-        ValueEventListener postListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Iterable<DataSnapshot> snapshots = dataSnapshot.getChildren();
-                ArrayList<GiveRequest> requests = new ArrayList<>();
-                for(DataSnapshot d: snapshots) {
-                    long timeMilli = (long) d.child("currentTimeMilli").getValue(true);
-                    double longitude = (double) d.child("longitude").getValue(true);
-                    double lat = (double) d.child("latitude").getValue(true);
-                    GiveRequest req = new GiveRequest(timeMilli, longitude, lat);
-                    //only add request to list if it happened in the last 15 minutes.
-                    if(System.currentTimeMillis() - timeMilli < 900000){
-                        requests.add(req);
-                    }
-                    Log.d("FIREBSE", "netid" + timeMilli + "long lat" + longitude + " " + lat);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
-                Log.w("firebase fucked", "loadPost:onCancelled", databaseError.toException());
-                // ...
-            }
-        };
-        dbref.addListenerForSingleValueEvent(postListener);
-
-        */
 
         // add markers here
+        updateMarkers();
 //        mMap.addMarker(new MarkerOptions()
 //                .position( new LatLng(36.000919, -78.939372))
 //                .title("Duke University")
@@ -223,6 +189,55 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void updateMarkers() {
+
+        Date date = new Date();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        int year  = localDate.getYear();
+        int month = localDate.getMonthValue();
+        int day   = localDate.getDayOfMonth();
+        String monthdayyear = month + "-" + day + "-" + year;
+
+        DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("give_requests").child(monthdayyear);
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Iterable<DataSnapshot> snapshots = dataSnapshot.getChildren();
+//                ArrayList<GiveRequest> requests = new ArrayList<>();
+                for (int i = markers.size()-1; i >= 0; i--) {
+                    markers.get(i).remove();
+                    markers.remove(i);
+                }
+                Log.d("a1234", "a1234");
+                for(DataSnapshot d: snapshots) {
+//                    long timeMilli = (long) d.child("currentTimeMilli").getValue(true);
+                    double lng = (double) d.child("longitude").getValue(true);
+                    double lat = (double) d.child("latitude").getValue(true);
+
+                    String netID =  d.getKey();
+
+                    Log.d("net id", netID);
+                    Log.d("read-lng", String.valueOf(lng));
+                    Log.d("read-lat", String.valueOf(lat));
+                    Marker m = mMap.addMarker(new MarkerOptions()
+                        .position( new LatLng(lat, lng))
+                        .title(netID)
+                        .snippet("test")
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
+
+                    markers.add(m);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w("firebase fucked", "loadPost:onCancelled", databaseError.toException());
+                // ...
+            }
+        };
+        dbref.addValueEventListener(postListener);
+
 
     }
 
