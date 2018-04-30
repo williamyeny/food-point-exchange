@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         //Check if user has already logged in, if so, go to map, if not, go to login/signup page
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext());
         if(!prefs.getBoolean("isUserLoggedIn", false)){
-            Intent intent = new Intent(this, SignUpActivity.class);
+            Intent intent = new Intent(this, MapsActivity.class);
             startActivity(intent);
         } else{
             //start map activity
@@ -54,9 +54,9 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseUtilities.updateOrCreateUser(new User("zl150", false,"2021", "CS/STATS", "Jerry Liu", "8586632671", "poop"));
         FirebaseUtilities.updateOrCreateUser(new User("wy35", true,"2020", "CS", "Will Ye", "6316496635", "poop"));
-        FirebaseUtilities.createGiveRequest("wy35", 36.000941, -78.939265);
-        FirebaseUtilities.createGiveRequest("zl150", 36.000941, -78.939265);
-        FirebaseUtilities.createGiveRequest("sl362", 36.000941, -78.939265);
+        FirebaseUtilities.createGiveRequest("wy35", 36.020941, -78.933265);
+        FirebaseUtilities.createGiveRequest("zl150", 36.050941, -78.939265);
+        FirebaseUtilities.createGiveRequest("sl362", 36.070941, -78.936265);
         FirebaseUtilities.recordTransaction(new Transaction("wy35", "zl150", 10));
         final TextView helloTextView = (TextView) findViewById(R.id.testtext);
         final Button testButton = (Button) findViewById(R.id.test_button);
