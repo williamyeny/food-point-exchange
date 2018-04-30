@@ -46,7 +46,7 @@ import java.util.HashMap;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private boolean isGiving = true;
+    private boolean isGiving = false;
     private String netID = "yung boi";
     private Button broadcastButton;
     private ImageButton locateButton;
@@ -74,6 +74,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         if (!isGiving) {
             setLocationImage.setVisibility(View.GONE);
+            broadcastButton.setVisibility(View.GONE);
         }
         markers = new ArrayList<>();
 
@@ -119,11 +120,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                for (Marker m : markers) {
-                    if (m.equals(marker)) {
-                        String netIDMarker = m.getTitle();
-                    }
-                }
+                String netIDMarker = marker.getTitle();
+                Log.d("marker", netIDMarker);
 
                 return false;
             }
