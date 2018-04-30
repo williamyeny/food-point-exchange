@@ -85,26 +85,20 @@ public class SignUpActivity extends AppCompatActivity{
         signupBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                EditText netIDText = (EditText) findViewById(R.id.user_NetID);
                 EditText majorText = (EditText) findViewById(R.id.user_Major);
                 EditText nameText = (EditText) findViewById(R.id.user_Name);
                 EditText phoneText = (EditText) findViewById(R.id.user_Phonenumber);
                 EditText yearText = (EditText) findViewById(R.id.user_Year);
                 Switch isGivingSwitch = (Switch) findViewById(R.id.is_giving_switch);
 
-
-                //TEST
-                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                preferences.edit().putString("currentNetID", "zl150");
-                preferences.edit().commit();
-                //REMOVE
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                String netID = netIDText.getText().toString();
                 String major = majorText.getText().toString();
                 String name = nameText.getText().toString();
                 String phone = phoneText.getText().toString();
                 String year = yearText.getText().toString();
                 boolean isGiving = isGivingSwitch.isChecked();
-                String netID = prefs.getString("currentNetID", "");
-                
+
                 //ensure user completed all fields
                 Log.d("WTF", netID + " " + major + " " + name + " " + phone + " " + year);
                 if (TextUtils.isEmpty(netID) || TextUtils.isEmpty(major) || TextUtils.isEmpty(name) ||
@@ -143,8 +137,12 @@ public class SignUpActivity extends AppCompatActivity{
 
                 //write to firebase db
                 FirebaseUtilities.updateOrCreateUser(new User(netID, isGiving,year, major, name, phone, profilePictureString64));
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                prefs.edit().putString("currentUserNetID", netID).commit();
 
                 //Switch activity on over to main map activity
+                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+                startActivity(intent);
             }
         });
 
