@@ -1,5 +1,6 @@
 package edu.duke.compsci290.fpx;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebSettings;
@@ -22,20 +23,13 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in_screen);
 
-        //https://oauth.oit.duke.edu/oauth/authorize.php?client_id=kungfoods&client_secret
-        // =imnotputtingoursecretheredoyouthinkimdumb&redirect_uri
-        // =http%3A%2F%2Flocalhost%3A1717&response_type=token&state=1129&scope=basic
-
         String auth="https://oauth.oit.duke.edu/oauth/authorize.php?client_id=fpx&" +
                 "redirect_uri=http%3A%2F%2Flocalhost%3A1717&" +
                 "response_type=token&state=1129&" +
-                "scope=basic";
+                "scope=basic identity:netid:read";
 
         URL url=null;
         URLConnection conn=null;
-        String client_id= "fpx";
-        String response_type="token";
-        String scope="basic identity:netid:read";
 
         try {
             url = new URL(auth);
@@ -47,8 +41,8 @@ public class SignInActivity extends AppCompatActivity {
         try {
             conn = (HttpURLConnection) url.openConnection();
         } catch (IOException e) {
-            e.printStackTrace();
 
+            e.printStackTrace();
         }
 
 
@@ -56,7 +50,34 @@ public class SignInActivity extends AppCompatActivity {
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         myWebView.loadUrl(auth);
-        myWebView.setWebViewClient(new WebViewClient());
+        myWebView.setWebViewClient(new WebViewClient(){
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                //Log.i("", "ACCESS_DENIED_HERE");
+                String token="";
+
+                if (url.contains("error")){
+
+                    Intent mIntent = new Intent(SignInActivity.this, Starter_Activity.class);
+                    startActivity(mIntent);
+
+                }else if(url.contains("#access_token=")){
+
+                    Intent mIntent = new Intent(SignInActivity.this, MapsActivity.class);
+                    startActivity(mIntent);
+
+
+
+                }
+
+
+
+            }
+
+        });
+
+
 
     }
 
