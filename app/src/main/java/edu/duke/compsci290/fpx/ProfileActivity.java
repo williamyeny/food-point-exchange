@@ -1,9 +1,11 @@
 package edu.duke.compsci290.fpx;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
@@ -186,6 +188,30 @@ public class ProfileActivity extends AppCompatActivity {
                 User u = user;
                 u.setmIsGiving(!u.getmIsGiving());
                 FirebaseUtilities.updateOrCreateUser(u);
+                String netID = u.getmNetID();
+                String major = u.getmMajor();
+                String name = u.getmName();
+                String phone = u.getmPhoneNumber();
+                String year = u.getmYear();
+                String profilePictureString64 = u.getmPhoto();
+                boolean isGiving = u.getmIsGiving();
+                UserDbHelper mDbHelper = new UserDbHelper(getApplicationContext());
+                SQLiteDatabase dbwrite = mDbHelper.getWritableDatabase();
+
+                // Create a new map of values, where column names are the keys
+                ContentValues values = new ContentValues();
+                values.put(UserContract.UserEntry.COLUMN_ISGIVING, isGiving);
+                values.put(UserContract.UserEntry.COLUMN_MAJOR, major);
+                values.put(UserContract.UserEntry.COLUMN_NAME, name);
+                values.put(UserContract.UserEntry.COLUMN_PHONENUMBER, phone);
+                values.put(UserContract.UserEntry.COLUMN_NETID, netID);
+                values.put(UserContract.UserEntry.COLUMN_PHOTO, profilePictureString64);
+                values.put(UserContract.UserEntry.COLUMN_YEAR, year);
+
+                // Insert the new row, returning the primary key value of the new row
+                long newRowId = dbwrite.insert(UserContract.UserEntry.TABLE_NAME, null, values);
+                Log.d("SQLite", "rowid " + newRowId);
+                dbwrite.close();
             }
         });
 
