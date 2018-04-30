@@ -39,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //public User(String mNetID, boolean mIsGiving, String mYear, String mMajor, String mName, String mPho
+        User user1 = new User("sl362", true, "2019", "ece", "serena liu", "7046141335", "myPhoto");
         //Check if user has already logged in, if so, go to map, if not, go to login/signup page
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext());
         if(!prefs.getBoolean("isUserLoggedIn", false)){
@@ -48,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         } else{
             //start map activity
         }
+
+
 
 
         // Rest of the stuff below here is all junk and only for testing purposes

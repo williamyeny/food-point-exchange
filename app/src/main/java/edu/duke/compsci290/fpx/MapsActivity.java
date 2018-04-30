@@ -2,6 +2,7 @@ package edu.duke.compsci290.fpx;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
@@ -105,7 +106,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // open profile activity here
+                //NOTE: LOAD ALL STUFF FROM DATABASE
+                User u = new User("sl362", true, "2019", "ece", "serena",  "7046141335", "myPhoto" );
+                Intent intent = new Intent(MapsActivity.this, ProfileActivity.class);
+                startActivity(intent);
+
             }
         });
 
