@@ -41,11 +41,13 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.HashMap;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private boolean isGiving = true;
+    private String netID = "yung boi";
     private Button broadcastButton;
     private ImageButton locateButton;
     private LatLng location;
@@ -53,6 +55,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Marker setLocationMarker;
     private ImageButton profileButton;
     private ArrayList<Marker> markers;
+    private DatabaseReference dbref;
+    private String timestamp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +76,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             setLocationImage.setVisibility(View.GONE);
         }
         markers = new ArrayList<>();
+
+        Date date = new Date();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        int year  = localDate.getYear();
+        int month = localDate.getMonthValue();
+        int day   = localDate.getDayOfMonth();
+        timestamp = month + "-" + day + "-" + year;
+        dbref = FirebaseDatabase.getInstance().getReference().child("give_requests").child(timestamp);
     }
 
+    protected void onDestroy(){
+        super.onDestroy();
+        // remove user lat/lng
+        dbref.child(netID).removeValue();
+
+    }
 
     /**
      * Manipulates the map once available.
@@ -98,13 +116,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
-        // add markers here
         updateMarkers();
-//        mMap.addMarker(new MarkerOptions()
-//                .position( new LatLng(36.000919, -78.939372))
-//                .title("Duke University")
-//                .snippet("test")
-//                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
 
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,15 +159,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     double lat = mMap.getCameraPosition().target.latitude;
                     double lng = mMap.getCameraPosition().target.longitude;
 
+                    lat = Math.round(lat*1000000.0)/1000000.0;
+                    lng = Math.round(lng*1000000.0)/1000000.0;
+
                     setLocationMarker = mMap.addMarker(new MarkerOptions()
                             .position(new LatLng(lat, lng))
-                            .title("My Location")
                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.setlocation_scaled)));
 
                     setLocationImage.setVisibility(View.GONE);
                     broadcastButton.setText("Stop broadcasting location");
 
                     // update user lat/lng here
+//                    HashMap<String, Double> user = new HashMap<>();
+//                    user.put("latitude", lat);
+//                    user.put("longitude", lng);
+//                    user.put("currentTimeMilli", 1.2);
+//                    dbref.child(netID).setValue(user);
+                    FirebaseUtilities.createGiveRequest(netID, lat, lng);
                 } else {
                     setLocationImage.setVisibility(View.VISIBLE);
                     if (setLocationMarker != null) {
@@ -164,6 +184,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     broadcastButton.setText("Start broadcasting location");
 
                     // remove user lat/lng here
+                    dbref.child(netID).removeValue();
                 }
 
             }
@@ -219,16 +240,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    public void updateMarkers() {
-
-        Date date = new Date();
-        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        int year  = localDate.getYear();
-        int month = localDate.getMonthValue();
-        int day   = localDate.getDayOfMonth();
-        String monthdayyear = month + "-" + day + "-" + year;
-
-        DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("give_requests").child(monthdayyear);
+    public int updateMarkers() {
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -241,17 +253,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Log.d("a1234", "a1234");
                 for(DataSnapshot d: snapshots) {
 //                    long timeMilli = (long) d.child("currentTimeMilli").getValue(true);
+                    String netIDMarker =  d.getKey();
+                    Log.d("net id", netIDMarker);
+
                     double lng = (double) d.child("longitude").getValue(true);
                     double lat = (double) d.child("latitude").getValue(true);
 
-                    String netID =  d.getKey();
 
-                    Log.d("net id", netID);
+
+
                     Log.d("read-lng", String.valueOf(lng));
                     Log.d("read-lat", String.valueOf(lat));
                     Marker m = mMap.addMarker(new MarkerOptions()
                         .position( new LatLng(lat, lng))
-                        .title(netID)
+                        .title(netIDMarker)
                         .snippet("test")
                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)));
 
@@ -269,6 +284,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         };
         dbref.addValueEventListener(postListener);
 
+        return 0;
 
     }
 
