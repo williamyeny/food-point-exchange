@@ -68,7 +68,6 @@ public class SignInActivity extends AppCompatActivity {
                     startActivity(mIntent);
 
 
-
                 }
 
 
