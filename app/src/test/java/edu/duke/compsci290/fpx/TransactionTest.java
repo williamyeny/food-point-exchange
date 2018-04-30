@@ -9,11 +9,22 @@ import static org.junit.Assert.assertTrue;
  */
 
 public class TransactionTest {
+        Transaction myTrans= new Transaction();
+        Transaction secTrans=new Transaction("12","13",90);
 
 
         @Test
-        public void Transactionblah() {
+        public void originalAmount() {
+                assertTrue(myTrans.getmReceiverID()=="");
+        }
+        @Test
+        public void testDateAdded(){
+                assertFalse(secTrans.getmDate()=="");
 
+        }
+        @Test
+        public void noDuplicateTrans(){
+                assertFalse(myTrans==secTrans);
         }
 
 }
