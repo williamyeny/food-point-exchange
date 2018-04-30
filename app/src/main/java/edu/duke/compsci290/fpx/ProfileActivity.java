@@ -62,7 +62,7 @@ public class ProfileActivity extends AppCompatActivity {
         TextView netidTV = (TextView)findViewById(R.id.netID);
         TextView majorTV = (TextView)findViewById(R.id.major_ID);
         TextView yearTV = (TextView)findViewById(R.id.year_id);
-        Button numberBtn = (Button) findViewById(R.id.number_id);
+        TextView numberTV = (TextView) findViewById(R.id.number_id);
         Button logoutBtn = (Button) findViewById(R.id.logout_button);
         ImageView profPicIV = (ImageView)findViewById(R.id.profile_picture);
 
@@ -153,20 +153,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         //Calls the number
 
-        numberBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse(number));
 
-                if (ActivityCompat.checkSelfPermission(ProfileActivity.this, android.Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED) {
-                    System.out.println("n o  p ermission");
-                    return;
-                }
-                startActivity(callIntent);
-
-            }
-        });
 
 
 
@@ -183,7 +170,7 @@ public class ProfileActivity extends AppCompatActivity {
         netidTV.setText(netIDStr);
         majorTV.setText(majorStr);
         yearTV.setText(yearStr);
-        numberBtn.setText(numberStr);
+        numberTV.setText(numberStr);
         giverSwitch.setChecked(isGiving);
 
        /* When the giver switch is clicked, must set this value on the database*/

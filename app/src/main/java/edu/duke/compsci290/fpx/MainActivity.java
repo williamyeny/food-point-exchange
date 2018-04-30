@@ -2,7 +2,10 @@ package edu.duke.compsci290.fpx;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.renderscript.Sampler;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUtilities.recordTransaction(new Transaction("wy35", "zl150", 10));
         final TextView helloTextView = (TextView) findViewById(R.id.testtext);
         final Button testButton = (Button) findViewById(R.id.test_button);
+        final Button testButton2= (Button) findViewById(R.id.test_button2);
 
 
         /*PROFILE TESTING STUFF*/
@@ -41,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         Transaction t1 = new Transaction("sl362", "pmk13", 32);
         Transaction t2 = new Transaction("sl362", "pmk13", 36);
 
-        testButton.setText(p.getName());
+        testButton.setText(u.getmName());
         testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,6 +54,24 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("user_key", u);
 
                 startActivity(intent);
+            }
+        });
+
+        /* OTHER PROFILE TESTING STUFF*/
+
+        final User u1 = new User("sl362", true, "2019", "ECE", "Serena Liu", "7046141335", "myPhoto");
+
+
+        testButton2.setText(u1.getmName());
+
+        testButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 =  new Intent(MainActivity.this, OtherProfileActivity.class);
+
+                intent2.putExtra("user_key", u1);
+
+                startActivity(intent2);
             }
         });
 

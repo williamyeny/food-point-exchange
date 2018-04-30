@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:2:1-29:12
-INJECTED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:2:1-29:12
-INJECTED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:2:1-29:12
-INJECTED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:2:1-29:12
+ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:2:1-26:12
 MERGED from [com.google.firebase:firebase-core:11.0.4] /Users/Serena/.gradle/caches/transforms-1/files-1.1/firebase-core-11.0.4.aar/4c11024b4184964df2447a25fcf9dcdc/AndroidManifest.xml:2:1-6:12
 MERGED from [com.android.support:appcompat-v7:26.1.0] /Users/Serena/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/90a306bc797a082eb79c2962110346b5/AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support.constraint:constraint-layout:1.1.0] /Users/Serena/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.0.aar/18b16b5f2673cac6e52f47b12ebf36d1/AndroidManifest.xml:2:1-11:12
@@ -29,25 +29,33 @@ MERGED from [android.arch.persistence:db-framework:1.0.0] /Users/Serena/.gradle/
 MERGED from [android.arch.persistence:db:1.0.0] /Users/Serena/.gradle/caches/transforms-1/files-1.1/db-1.0.0.aar/cbe80a52e25d1756195fff473a2dc3d0/AndroidManifest.xml:17:1-24:12
 MERGED from [android.arch.core:runtime:1.0.0] /Users/Serena/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/a5e92d0665227b95020ac511ed144284/AndroidManifest.xml:17:1-24:12
 MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/Serena/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/7f069a31b13fe61c8b6af0eed84735c8/AndroidManifest.xml:17:1-30:12
-INJECTED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:2:1-29:12
-INJECTED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:2:1-29:12
-INJECTED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:2:1-29:12
+INJECTED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:2:1-26:12
 	package
 		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:3:5-38
 		INJECTED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml
-		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:2:1-29:12
+		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:2:1-26:12
 		INJECTED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml
-		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:2:1-29:12
+		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:2:1-26:12
 		INJECTED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:5:5-79
+	android:name
+		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:5:22-76
+uses-permission#android.permission.CALL_PHONE
+ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:6:5-69
+	android:name
+		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:6:22-66
 application
-ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:5:5-22:19
+ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:8:5-24:19
 MERGED from [com.google.firebase:firebase-core:11.0.4] /Users/Serena/.gradle/caches/transforms-1/files-1.1/firebase-core-11.0.4.aar/4c11024b4184964df2447a25fcf9dcdc/AndroidManifest.xml:5:5-20
 MERGED from [com.google.firebase:firebase-core:11.0.4] /Users/Serena/.gradle/caches/transforms-1/files-1.1/firebase-core-11.0.4.aar/4c11024b4184964df2447a25fcf9dcdc/AndroidManifest.xml:5:5-20
 MERGED from [com.android.support:appcompat-v7:26.1.0] /Users/Serena/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/90a306bc797a082eb79c2962110346b5/AndroidManifest.xml:25:5-29:19
@@ -87,43 +95,39 @@ MERGED from [com.android.support:support-compat:26.1.0] /Users/Serena/.gradle/ca
 MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/Serena/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/7f069a31b13fe61c8b6af0eed84735c8/AndroidManifest.xml:24:5-28:19
 MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/Serena/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/7f069a31b13fe61c8b6af0eed84735c8/AndroidManifest.xml:24:5-28:19
 	android:supportsRtl
-		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:10:9-35
+		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:13:9-35
 	android:label
-		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:8:9-41
+		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:11:9-41
 	android:roundIcon
-		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:9:9-54
+		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:12:9-54
 	android:icon
-		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:7:9-43
+		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:10:9-43
 	android:allowBackup
-		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:6:9-35
+		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:9:9-35
 	android:theme
-		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:11:9-40
+		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:14:9-40
 activity#edu.duke.compsci290.fpx.MainActivity
-ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:12:9-18:20
+ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:15:9-21:20
 	android:name
-		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:12:19-47
+		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:15:19-47
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:13:13-17:29
+ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:16:13-20:29
 action#android.intent.action.MAIN
-ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:14:17-69
+ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:17:17-69
 	android:name
-		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:14:25-66
+		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:17:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:16:17-77
+ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:19:17-77
 	android:name
-		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:16:27-74
+		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:19:27-74
 activity#edu.duke.compsci290.fpx.ProfileActivity
-ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:19:9-20:20
+ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:22:9-62
 	android:name
-		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:19:19-50
-uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:24:5-79
+		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:22:19-50
+activity#edu.duke.compsci290.fpx.OtherProfileActivity
+ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:23:9-67
 	android:name
-		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:24:22-76
-uses-permission#android.permission.CALL_PHONE
-ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:25:5-69
-	android:name
-		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:25:22-66
+		ADDED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml:23:19-55
 uses-sdk
 INJECTED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/Serena/cs290/fpx/food-point-exchange/app/src/main/AndroidManifest.xml
