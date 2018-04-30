@@ -111,9 +111,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(dukeLatLng, 18.0f));
 
 
-
-
         updateMarkers();
+
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                for (Marker m : markers) {
+                    if (m.equals(marker)) {
+                        String netIDMarker = m.getTitle();
+                    }
+                }
+
+                return false;
+            }
+        });
 
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -263,28 +274,4 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-
-
-    /*
-            // if GPS permission is granted...
-        if (ContextCompat.checkSelfPermission(this,
-                android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                || ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            Log.d("permission granted", "true");
-
-            // grab gps location
-            Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            currLatLng = new LatLng(location.getLatitude(), location.getLongitude());
-
-            Log.d("currLatLng", currLatLng.toString());
-
-        } else { // gps permission not available
-            currLatLng = new LatLng(36.000919, -78.939372); // set to duke's lat/lng if gps not available
-            // request location
-            ActivityCompat.requestPermissions(this,
-                    new String[] { Manifest.permission.ACCESS_FINE_LOCATION },
-                    12);
-        }
-     */
 }
