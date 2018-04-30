@@ -2,11 +2,13 @@ package edu.duke.compsci290.fpx;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +17,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -24,6 +27,14 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 
 public class ProfileActivity extends AppCompatActivity {
@@ -46,7 +57,7 @@ public class ProfileActivity extends AppCompatActivity {
 
       /* Take in Intent data*/
         Intent receivedIntent = this.getIntent();
-        User user = (User) receivedIntent.getSerializableExtra("user_key");
+        final User user = (User) receivedIntent.getSerializableExtra("user_key");
 
         String nameStr = "Name: " + user.getmName();
         String netIDStr ="NetID: " + user.getmNetID();
@@ -90,9 +101,6 @@ public class ProfileActivity extends AppCompatActivity {
         addTxBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //NOTE: ADD TRANSACTION TO DATABASE
-
-
                 String receiver = receiverET.getText().toString();
                 String sender = senderET.getText().toString();
                 String amt = amtET.getText().toString();
@@ -121,8 +129,7 @@ public class ProfileActivity extends AppCompatActivity {
                 }
 
                 Transaction tx = new Transaction(sender, receiver, amount); //log this to the database
-                System.out.println(tx.getmSenderID() + tx.getmReceiverID() + tx.getmAmount());
-
+                FirebaseUtilities.recordTransaction(tx);
                 senderET.setInputType(InputType.TYPE_NULL);
                 receiverET.setInputType(InputType.TYPE_NULL);
                 amtET.setInputType(InputType.TYPE_NULL);
@@ -149,6 +156,8 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //NOTE: CHANGE THE DATABASE CURRENT ID
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                prefs.edit().putBoolean("isUserLoggedIn", false);
                 Intent intent =  new Intent(ProfileActivity.this, Starter_Activity.class);
                 startActivity(intent); //should be login screen later...also erase currentMID in database?
             }
@@ -170,24 +179,38 @@ public class ProfileActivity extends AppCompatActivity {
 
       /* When the giver switch is clicked, must set this value on the database*/
 
-//        giverSwitch.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //do stuff with firebase here?
-//            }
-//        });
+        giverSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("changing giving", "lol");
+                User u = user;
+                u.setmIsGiving(!u.getmIsGiving());
+                FirebaseUtilities.updateOrCreateUser(u);
+            }
+        });
 
+        DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("transactions").child(user.getmNetID());
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<Transaction> trans = new ArrayList<>();
+                for(DataSnapshot ds : dataSnapshot.getChildren()){
+                    trans.add(ds.getValue(Transaction.class));
+                }
+                Transaction[] transactions = trans.toArray(new Transaction[trans.size()]);
+                RecyclerView rv = findViewById(R.id.activity_profile_recycler_view);
+                rv.setAdapter(new ProfileAdapter(getApplicationContext(), transactions));
+                rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+            }
 
-       /*NOTE: LOAD THESE TRANSACTIONS STRAIGHT FROM DATABASE*/
-        Transaction testT1 = new Transaction("sl362", "pmk13", 32);
-        Transaction testT2 = new Transaction("sl362", "pmk13", 37);
-        Transaction testT3 = new Transaction("sl362", "pmk13", 39);
-        Transaction testT4 = new Transaction("sl362", "pmk13", 50);
-        Transaction[] transactions = new Transaction[]{testT1, testT2, testT3, testT4};
-
-        RecyclerView rv = findViewById(R.id.activity_profile_recycler_view);
-        rv.setAdapter(new ProfileAdapter(this, transactions));
-        rv.setLayoutManager(new LinearLayoutManager(this));
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w("firebase fucked", "loadPost:onCancelled", databaseError.toException());
+                // ...
+            }
+        };
+        dbref.addListenerForSingleValueEvent(postListener);
     }
 
 

@@ -107,7 +107,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View view) {
                 //NOTE: LOAD ALL STUFF FROM DATABASE
-                User u = new User("sl362", true, "2019", "ece", "serena",  "7046141335", "myPhoto" );
+                User u = new User("zl150", true, "2019", "ece", "serena",  "7046141335", "myPhoto" );
                 Intent intent = new Intent(MapsActivity.this, ProfileActivity.class);
                 intent.putExtra("user_key", u);
                 startActivity(intent);

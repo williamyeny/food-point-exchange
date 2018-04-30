@@ -47,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, Starter_Activity.class);
             startActivity(intent);
         } else{
-            //start map activity
+            Intent intent = new Intent(this, MapsActivity.class);
+            startActivity(intent);
         }
     }
 
