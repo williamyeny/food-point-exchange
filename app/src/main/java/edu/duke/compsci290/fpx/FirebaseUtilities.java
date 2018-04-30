@@ -15,7 +15,9 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by jerry on 4/21/18.
@@ -51,9 +53,11 @@ public class FirebaseUtilities {
         int month = localDate.getMonthValue();
         int day   = localDate.getDayOfMonth();
         String monthdayyear = month + "-" + day + "-" + year;
-        mDatabase.child("give_requests").child(monthdayyear).child(netID).child("latitude").setValue(latitude);
-        mDatabase.child("give_requests").child(monthdayyear).child(netID).child("longitude").setValue(longitude);
-        mDatabase.child("give_requests").child(monthdayyear).child(netID).child("currentTimeMilli").setValue(date.getTime());
+        Map<String, Object> newUser = new HashMap<>();
+        newUser.put("latitude", latitude);
+        newUser.put("longitude", longitude);
+        newUser.put("currentTimeMilli", date.getTime());
+        mDatabase.child("give_requests").child(monthdayyear).child(netID).setValue(newUser);
     }
 
     /*
