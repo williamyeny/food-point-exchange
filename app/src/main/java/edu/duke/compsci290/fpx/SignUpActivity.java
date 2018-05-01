@@ -148,6 +148,20 @@ public class SignUpActivity extends AppCompatActivity{
     }
 
     private void dispatchTakePictureIntent() {
+        if (ContextCompat.checkSelfPermission(getApplicationContext(),
+                android.Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Permission is not granted
+            // No explanation needed, we can request the permission.
+            requestPermissions( new String[] {android.Manifest.permission.CAMERA}, 100);
+            // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+            // app-defined int constant. The callback method gets the
+            // result of the request.
+            return;
+        } else {
+            // Permission has already been granted
+        }
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
