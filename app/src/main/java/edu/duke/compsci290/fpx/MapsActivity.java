@@ -95,7 +95,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         User user = new User(c.getString(netid), c.getInt(giving) != 0, c.getString(iyear), c.getString(major), c.getString(name), c.getString(phoneNumber), c.getString(photo));
         Log.d("SQLITE retrieval", user.getmNetID() + user.getmName());
         isGiving = user.getmIsGiving();
+        Log.d("user is giving", String.valueOf(isGiving));
         netID = user.getmNetID();
+        Log.d("user netid", String.valueOf(netID));
 
         broadcastButton = findViewById(R.id.broadcastButton);
         locateButton = findViewById(R.id.locateButton);
@@ -151,29 +153,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public boolean onMarkerClick(Marker marker) {
                 String netIDMarker = marker.getTitle();
-                Log.d("marker", netIDMarker);
+                if (netIDMarker != null) {
+                    Log.d("marker", netIDMarker);
 
-                DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("users").child(netIDMarker);
-                ValueEventListener postListener = new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
+                    DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("users").child(netIDMarker);
+                    ValueEventListener postListener = new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        User otherUser = dataSnapshot.getValue(User.class);
-                        //Switch activity on over to other profile activity
-                        Intent intent = new Intent(getApplicationContext(), OtherProfileActivity.class);
-                        intent.putExtra("user_key", otherUser);
-                        startActivity(intent);
-                    }
+                            User otherUser = dataSnapshot.getValue(User.class);
+                            //Switch activity on over to other profile activity
+                            Intent intent = new Intent(getApplicationContext(), OtherProfileActivity.class);
+                            intent.putExtra("user_key", otherUser);
+                            startActivity(intent);
+                        }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        // Getting Post failed, log a message
-                        Log.w("firebase fucked", "loadPost:onCancelled", databaseError.toException());
-                        // ...
-                    }
-                };
-                dbref.addListenerForSingleValueEvent(postListener);
-
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            // Getting Post failed, log a message
+                            Log.w("firebase fucked", "loadPost:onCancelled", databaseError.toException());
+                            // ...
+                        }
+                    };
+                    dbref.addListenerForSingleValueEvent(postListener);
+                }
                 return false;
             }
         });
